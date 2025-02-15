@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class TranscationScreen extends StatelessWidget {
+  const TranscationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const Column(
       children: [
         Center(
-          child: Text("Home"),
+          child: Text("Transcation"),
         )
       ],
     );

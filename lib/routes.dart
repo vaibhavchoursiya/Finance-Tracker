@@ -1,4 +1,4 @@
-import 'package:finence_tracker/screens/home_screen.dart';
+import 'package:finence_tracker/screens/main_screen.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRouter {
@@ -6,7 +6,7 @@ class AppRouter {
     GoRoute(
       path: "/home",
       name: "/home",
-      builder: (context, state) => const HomeScreen(),
+      builder: (context, state) => const MainScreen(),
     ),
   ]);
 }
