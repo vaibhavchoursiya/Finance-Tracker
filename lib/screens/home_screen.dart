@@ -1,3 +1,4 @@
+import 'package:finence_tracker/widget/balance_card.dart';
 import 'package:finence_tracker/widget/nav_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,13 @@ class HomeScreen extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(28.0),
         child: Column(
-          children: [NavBar()],
+          children: [
+            NavBar(),
+            const SizedBox(
+              height: 25.0,
+            ),
+            BalanceCard()
+          ],
         ),
       ),
     );
