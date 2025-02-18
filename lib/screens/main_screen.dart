@@ -16,7 +16,7 @@ class MainScreen extends StatelessWidget {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: const AppFloatingActionButton(),
-      backgroundColor: AppTheme.primary,
+      backgroundColor: AppTheme.dark,
       bottomNavigationBar: const AppBottomNavigationBar(),
       body: BlocBuilder<ChangeScreenBloc, ChangeScreenState>(
           builder: (context, state) {

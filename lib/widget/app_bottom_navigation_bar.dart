@@ -18,16 +18,11 @@ class AppBottomNavigationBar extends StatelessWidget {
     return BlocBuilder<ChangeScreenBloc, ChangeScreenState>(
         builder: (context, state) {
       return Container(
-        padding: const EdgeInsets.symmetric(vertical: 8.0),
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(colors: [
-            AppTheme.dark,
-            AppTheme.accent,
-          ], transform: GradientRotation(pi / 2)),
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(30.0),
-            topRight: Radius.circular(30.0),
-          ),
+        padding: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 4.0),
+        margin: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 10.0),
+        decoration: BoxDecoration(
+          color: AppTheme.light.withOpacity(0.125),
+          borderRadius: BorderRadius.circular(10.0),
         ),
         child: BottomNavigationBar(
             currentIndex: state.currentIndex,

@@ -11,60 +11,34 @@ class BalanceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 4.0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20.0),
-      ),
-      child: Stack(
-        children: [
-          Container(
-            width: double.infinity,
-            height: 210.0,
-            decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                colors: [
-                  AppTheme.accent,
-                  AppTheme.dark,
-                  AppTheme.primary,
-                  AppTheme.ternary,
-                ],
-                transform: GradientRotation(pi / 4),
-              ),
-              borderRadius: BorderRadius.circular(20.0),
+    return const Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        TotalBalanceWidget(),
+        SizedBox(
+          height: 16.0,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            DisplayAmountWidget(
+              amount: 25000.00,
+              iconData: CupertinoIcons.arrow_down,
+              title: "Income",
+              color: Colors.green,
             ),
-          ),
-          const Positioned.fill(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                TotalBalanceWidget(),
-                Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 18.0, vertical: 25.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      DisplayAmountWidget(
-                        amount: 25000.00,
-                        iconData: CupertinoIcons.arrow_down,
-                        title: "Income",
-                        color: Colors.green,
-                      ),
-                      DisplayAmountWidget(
-                        amount: 24000.00,
-                        iconData: CupertinoIcons.arrow_up,
-                        title: "Expenses",
-                        color: Colors.red,
-                      ),
-                    ],
-                  ),
-                )
-              ],
+            SizedBox(
+              width: 16.0,
             ),
-          )
-        ],
-      ),
+            DisplayAmountWidget(
+              amount: 24000.00,
+              iconData: CupertinoIcons.arrow_up,
+              title: "Expenses",
+              color: Colors.red,
+            ),
+          ],
+        )
+      ],
     );
   }
 }

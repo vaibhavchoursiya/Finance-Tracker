@@ -1,3 +1,4 @@
+import 'package:finence_tracker/utitlies/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -8,35 +9,43 @@ class TotalBalanceWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Column(
-          children: [
-            const SizedBox(
-              height: 24.0,
-            ),
-            Text(
-              "Total balance",
-              style: GoogleFonts.roboto(
-                fontSize: 16.0,
-                color: Colors.white.withOpacity(0.9),
+    return Container(
+      padding: const EdgeInsets.all(16.0),
+      decoration: BoxDecoration(
+        color: AppTheme.light.withOpacity(0.125),
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Column(
+            children: [
+              Chip(
+                backgroundColor: AppTheme.dark,
+                label: Text(
+                  "Total balance",
+                  style: GoogleFonts.aDLaMDisplay(
+                    fontSize: 14.0,
+                    color: AppTheme.light.withOpacity(0.6),
+                    height: 1.2,
+                  ),
+                ),
               ),
-            ),
-            const SizedBox(
-              height: 6.0,
-            ),
-            Text(
-              "\$ 3000.00",
-              style: GoogleFonts.roboto(
-                fontSize: 42.0,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
+              const SizedBox(
+                height: 4.5,
               ),
-            ),
-          ],
-        ),
-      ],
+              Text(
+                "\$ 3000.00",
+                style: GoogleFonts.roboto(
+                  fontSize: 32.0,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

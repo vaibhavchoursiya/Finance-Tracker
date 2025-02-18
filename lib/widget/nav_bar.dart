@@ -1,9 +1,9 @@
 import 'dart:ui';
 import 'package:finence_tracker/utitlies/app_theme.dart';
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 class NavBar extends StatelessWidget {
   const NavBar({
@@ -17,22 +17,11 @@ class NavBar extends StatelessWidget {
       children: [
         Row(
           children: [
-            BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 1.2, sigmaY: 1.5),
-              child: Container(
-                width: 47.0,
-                height: 47.0,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: AppTheme.accent.withOpacity(0.24),
-                  shape: BoxShape.circle,
-                ),
-                child: const Text(
-                  "🧢",
-                  style: TextStyle(
-                    fontSize: 24.0,
-                  ),
-                ),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.menu,
+                color: AppTheme.light,
               ),
             ),
             const SizedBox(
@@ -66,7 +55,7 @@ class NavBar extends StatelessWidget {
           height: 45.0,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0),
-            color: AppTheme.accent,
+            color: AppTheme.primary,
           ),
           child: const Icon(
             CupertinoIcons.settings,

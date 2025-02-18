@@ -19,9 +19,9 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(
               height: 35.0,
             ),
-            Stack(
+            const Stack(
               children: [
-                LightEffectLine(),
+                // LightEffectLine(),
                 BalanceCard(),
               ],
             ),
