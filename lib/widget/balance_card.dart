@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:finence_tracker/utitlies/app_theme.dart';
 import 'package:finence_tracker/widget/display_amount_widget.dart';
 import 'package:finence_tracker/widget/total_balance_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,7 +12,7 @@ class BalanceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 15.0,
+      elevation: 4.0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.0),
       ),
@@ -21,13 +22,14 @@ class BalanceCard extends StatelessWidget {
             width: double.infinity,
             height: 210.0,
             decoration: BoxDecoration(
-              gradient: LinearGradient(
+              gradient: const LinearGradient(
                 colors: [
-                  Theme.of(context).colorScheme.primary,
-                  Theme.of(context).colorScheme.secondary,
-                  Theme.of(context).colorScheme.tertiary,
+                  AppTheme.accent,
+                  AppTheme.dark,
+                  AppTheme.primary,
+                  AppTheme.ternary,
                 ],
-                transform: const GradientRotation(pi / 4),
+                transform: GradientRotation(pi / 4),
               ),
               borderRadius: BorderRadius.circular(20.0),
             ),

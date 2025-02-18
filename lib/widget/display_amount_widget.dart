@@ -1,3 +1,4 @@
+import 'package:finence_tracker/utitlies/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -23,7 +24,7 @@ class DisplayAmountWidget extends StatelessWidget {
           height: 28.0,
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.25),
+            color: color.withOpacity(0.25),
             shape: BoxShape.circle,
           ),
           child: Icon(
@@ -41,7 +42,9 @@ class DisplayAmountWidget extends StatelessWidget {
             Text(
               title,
               style: GoogleFonts.roboto(
-                color: Colors.white70,
+                color: AppTheme.light.withOpacity(0.65),
+                height: 1.2,
+                fontWeight: FontWeight.w600,
               ),
             ),
             Text(

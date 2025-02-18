@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:finence_tracker/utitlies/app_theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:flutter/cupertino.dart';
@@ -16,44 +17,23 @@ class NavBar extends StatelessWidget {
       children: [
         Row(
           children: [
-            Stack(
-              children: [
-                Container(
-                  width: 45.0,
-                  height: 45.0,
-                  decoration: const BoxDecoration(
-                    color: Colors.amber,
-                    shape: BoxShape.circle,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.amberAccent,
-                        blurRadius: 3.0,
-                        spreadRadius: 1.2,
-                      ),
-                    ],
+            BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 1.2, sigmaY: 1.5),
+              child: Container(
+                width: 47.0,
+                height: 47.0,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: AppTheme.accent.withOpacity(0.24),
+                  shape: BoxShape.circle,
+                ),
+                child: const Text(
+                  "🧢",
+                  style: TextStyle(
+                    fontSize: 24.0,
                   ),
                 ),
-                Positioned.fill(
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 1.5, sigmaY: 1.5),
-                    child: Container(
-                      width: 47.0,
-                      height: 47.0,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.34),
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Text(
-                        "🧢",
-                        style: TextStyle(
-                          fontSize: 24.0,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+              ),
             ),
             const SizedBox(
               width: 15.0,
@@ -65,15 +45,16 @@ class NavBar extends StatelessWidget {
                   "welcome 👋",
                   style: GoogleFonts.aDLaMDisplay(
                     fontSize: 15.0,
-                    height: 1,
+                    height: 1.2,
+                    color: AppTheme.light.withOpacity(0.8),
                   ),
                 ),
                 Text(
                   "Jone Doe",
                   style: GoogleFonts.roboto(
                     fontSize: 20.0,
-                    color: Colors.black87,
                     fontWeight: FontWeight.bold,
+                    color: AppTheme.light,
                   ),
                 ),
               ],
@@ -84,12 +65,12 @@ class NavBar extends StatelessWidget {
           width: 45.0,
           height: 45.0,
           decoration: BoxDecoration(
-            color: Colors.white,
             borderRadius: BorderRadius.circular(10.0),
+            color: AppTheme.accent,
           ),
-          child: Icon(
+          child: const Icon(
             CupertinoIcons.settings,
-            color: Theme.of(context).colorScheme.onSurface,
+            color: AppTheme.light,
           ),
         )
       ],
