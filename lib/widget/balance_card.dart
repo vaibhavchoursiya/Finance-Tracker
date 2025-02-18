@@ -1,6 +1,3 @@
-import 'dart:math';
-
-import 'package:finence_tracker/utitlies/app_theme.dart';
 import 'package:finence_tracker/widget/display_amount_widget.dart';
 import 'package:finence_tracker/widget/total_balance_widget.dart';
 import 'package:flutter/cupertino.dart';
