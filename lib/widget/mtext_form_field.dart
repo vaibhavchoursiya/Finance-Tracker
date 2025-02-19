@@ -1,6 +1,6 @@
-import 'package:finence_tracker/features/registration/bloc/registeraton_bloc.dart';
-import 'package:finence_tracker/features/registration/bloc/registration_event.dart';
-import 'package:finence_tracker/features/registration/bloc/registration_state.dart';
+import 'package:finence_tracker/features/password_visibilty_toggle/bloc/password_visibilty_toggle_bloc.dart';
+import 'package:finence_tracker/features/password_visibilty_toggle/bloc/password_visibilty_toggle_event.dart';
+import 'package:finence_tracker/features/password_visibilty_toggle/bloc/password_visibilty_toggle_state.dart';
 import 'package:finence_tracker/utitlies/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -76,9 +76,9 @@ class MTextFormFieldPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final registerationBloc = context.read<RegisterationBloc>();
-    return BlocBuilder<RegisterationBloc, RegistrationState>(
-        builder: (context, state) {
+    final passwordVToggle = context.read<PasswordVisibiltyToggleBloc>();
+    return BlocBuilder<PasswordVisibiltyToggleBloc,
+        PasswordVisibiltyToggleState>(builder: (context, state) {
       return Column(
         children: [
           TextFormField(
@@ -89,7 +89,7 @@ class MTextFormFieldPassword extends StatelessWidget {
             style: GoogleFonts.aDLaMDisplay(
               color: AppTheme.light,
             ),
-            obscureText: state.showPassword!,
+            obscureText: !state.passwordVisibilty,
             decoration: InputDecoration(
                 hintText: hintText,
                 hintStyle:
@@ -106,16 +106,16 @@ class MTextFormFieldPassword extends StatelessWidget {
                 ),
                 suffixIcon: IconButton(
                   onPressed: () {
-                    registerationBloc.add(PasswordToggleEvent());
+                    passwordVToggle.add(PasswordVisibiltyToggle());
                   },
-                  icon: state.showPassword!
+                  icon: state.passwordVisibilty
                       ? const Icon(
-                          Icons.lock,
-                          color: AppTheme.primary,
-                        )
-                      : const Icon(
                           Icons.remove_red_eye,
                           color: AppTheme.light,
+                        )
+                      : const Icon(
+                          Icons.lock,
+                          color: AppTheme.primary,
                         ),
                 ),
                 enabledBorder: OutlineInputBorder(
