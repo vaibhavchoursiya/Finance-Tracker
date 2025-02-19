@@ -1,7 +1,8 @@
 import 'dart:ui';
+import 'package:finence_tracker/features/auth/bloc/auth_bloc.dart';
+import 'package:finence_tracker/features/auth/bloc/auth_event.dart';
 import 'package:finence_tracker/features/login/bloc/login_bloc.dart';
 import 'package:finence_tracker/features/login/bloc/login_event.dart';
-import 'package:finence_tracker/screens/login_screen.dart';
 import 'package:finence_tracker/utitlies/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,6 +17,8 @@ class NavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final loginBloc = context.read<LoginBloc>();
+    final authBloc = context.read<AuthBloc>();
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -57,6 +60,7 @@ class NavBar extends StatelessWidget {
         IconButton(
           onPressed: () {
             loginBloc.add(LoginOutEvent());
+            authBloc.add(ReInitializeRegisterEvent());
             context.go("/login");
           },
           icon: const Icon(

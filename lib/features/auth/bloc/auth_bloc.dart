@@ -20,5 +20,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(AuthFailedState(errorMessage: res["errorMessage"]));
       }
     });
+
+    on<ReInitializeRegisterEvent>((event, emit) {
+      emit(AuthInitialState());
+    });
   }
 }

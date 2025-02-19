@@ -22,7 +22,9 @@ class AppRouter {
               if (snapshot.hasData) {
                 final String? name = snapshot.data?.displayName;
                 debugPrint(name);
-                return const MainScreen();
+                if (name != null) {
+                  return const MainScreen();
+                }
               }
               return const RegisterationScreen();
             });

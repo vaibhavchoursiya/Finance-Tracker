@@ -8,3 +8,5 @@ class RegisterEvent extends AuthEvent {
   RegisterEvent(
       {required this.name, required this.email, required this.password});
 }
+
+class ReInitializeRegisterEvent extends AuthEvent {}
