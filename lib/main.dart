@@ -2,11 +2,15 @@ import 'package:finence_tracker/features/auth/bloc/auth_bloc.dart';
 import 'package:finence_tracker/features/change_screen/bloc/change_screen_bloc.dart';
 import 'package:finence_tracker/features/login/bloc/login_bloc.dart';
 import 'package:finence_tracker/features/password_visibilty_toggle/bloc/password_visibilty_toggle_bloc.dart';
+import 'package:finence_tracker/firebase_options.dart';
 import 'package:finence_tracker/routes.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 

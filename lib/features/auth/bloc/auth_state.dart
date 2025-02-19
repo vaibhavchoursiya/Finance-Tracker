@@ -1,5 +1,3 @@
-import 'package:finence_tracker/models/user_model.dart';
-
 abstract class AuthState {}
 
 class AuthInitialState extends AuthState {}
@@ -7,8 +5,8 @@ class AuthInitialState extends AuthState {}
 class AuthLoadingState extends AuthState {}
 
 class AuthSuccessState extends AuthState {
-  final UserModel user;
-  AuthSuccessState({required this.user});
+  final String id;
+  AuthSuccessState({required this.id});
 }
 
 class AuthFailedState extends AuthState {

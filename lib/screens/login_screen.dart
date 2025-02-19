@@ -1,6 +1,5 @@
 import 'package:finence_tracker/features/login/bloc/login_bloc.dart';
 import 'package:finence_tracker/features/login/bloc/login_state.dart';
-import 'package:finence_tracker/screens/registeration_screen.dart';
 import 'package:finence_tracker/utitlies/app_theme.dart';
 import 'package:finence_tracker/widget/login_form_widget.dart';
 import 'package:finence_tracker/widget/scaffold_message_widget.dart';
