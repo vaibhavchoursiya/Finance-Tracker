@@ -31,4 +31,15 @@ class Validators {
     }
     return null; // Password is valid
   }
+
+  static String? validateAmount(String? value) {
+    if (value == null || value.isEmpty) {
+      return "field is required";
+    } else if (double.tryParse(value) == null) {
+      return "enter valid amount";
+    } else if (double.parse(value) < 0.0) {
+      return "enter amount > 0.0";
+    }
+    return null;
+  }
 }

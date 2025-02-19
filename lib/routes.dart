@@ -1,3 +1,4 @@
+import 'package:finence_tracker/screens/add_transcation_screen.dart';
 import 'package:finence_tracker/screens/login_screen.dart';
 import 'package:finence_tracker/screens/main_screen.dart';
 import 'package:finence_tracker/screens/registeration_screen.dart';
@@ -34,6 +35,11 @@ class AppRouter {
       path: "/login",
       name: "/login",
       builder: (context, state) => const LoginScreen(),
+    ),
+    GoRoute(
+      path: "/add_transcation",
+      name: "/add_transcation",
+      builder: (context, state) => const AddTranscationScreen(),
     ),
   ]);
 }
