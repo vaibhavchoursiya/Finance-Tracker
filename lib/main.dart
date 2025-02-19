@@ -1,4 +1,6 @@
+import 'package:finence_tracker/features/auth/bloc/auth_bloc.dart';
 import 'package:finence_tracker/features/change_screen/bloc/change_screen_bloc.dart';
+import 'package:finence_tracker/features/login/bloc/login_bloc.dart';
 import 'package:finence_tracker/features/password_visibilty_toggle/bloc/password_visibilty_toggle_bloc.dart';
 import 'package:finence_tracker/routes.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +22,12 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => PasswordVisibiltyToggleBloc(),
+        ),
+        BlocProvider(
+          create: (context) => AuthBloc(),
+        ),
+        BlocProvider(
+          create: (context) => LoginBloc(),
         ),
       ],
       child: MaterialApp.router(

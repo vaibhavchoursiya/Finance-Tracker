@@ -1,5 +1,5 @@
-import 'package:finence_tracker/features/auth/bloc/auth_bloc.dart';
-import 'package:finence_tracker/features/auth/bloc/auth_event.dart';
+import 'package:finence_tracker/features/login/bloc/login_bloc.dart';
+import 'package:finence_tracker/features/login/bloc/login_event.dart';
 import 'package:finence_tracker/utitlies/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:finence_tracker/utitlies/validators.dart';
@@ -7,30 +7,27 @@ import 'package:finence_tracker/widget/mtext_form_field.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class RegisterationFormWidget extends StatefulWidget {
-  const RegisterationFormWidget({
+class LoginFormWidget extends StatefulWidget {
+  const LoginFormWidget({
     super.key,
   });
 
   @override
-  State<RegisterationFormWidget> createState() => _RegisterationFormState();
+  State<LoginFormWidget> createState() => _RegisterationFormState();
 }
 
-class _RegisterationFormState extends State<RegisterationFormWidget> {
-  final GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
+class _RegisterationFormState extends State<LoginFormWidget> {
+  final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
   void clearTextEditingControllers() {
     _emailController.clear();
-    _nameController.clear();
     _passwordController.clear();
   }
 
   @override
   void dispose() {
-    _nameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
@@ -38,9 +35,9 @@ class _RegisterationFormState extends State<RegisterationFormWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final authBloc = context.read<AuthBloc>();
+    final loginBloc = context.read<LoginBloc>();
     return Form(
-        key: registerFormKey,
+        key: loginFormKey,
         child: Column(
           children: [
             MTextFormField(
@@ -48,12 +45,6 @@ class _RegisterationFormState extends State<RegisterationFormWidget> {
               hintText: "email@example.com",
               controller: _emailController,
               validator: Validators.validateEmail,
-            ),
-            MTextFormField(
-              iconData: Icons.person,
-              hintText: "enter your name",
-              controller: _nameController,
-              validator: Validators.validateString,
             ),
             MTextFormFieldPassword(
               iconData: Icons.password,
@@ -69,17 +60,15 @@ class _RegisterationFormState extends State<RegisterationFormWidget> {
                   backgroundColor: AppTheme.primary,
                 ),
                 onPressed: () {
-                  if (registerFormKey.currentState!.validate()) {
-                    debugPrint("register");
-                    authBloc.add(RegisterEvent(
-                        name: _nameController.text,
+                  if (loginFormKey.currentState!.validate()) {
+                    debugPrint("login");
+                    loginBloc.add(LoginUserEvent(
                         email: _emailController.text,
                         password: _passwordController.text));
-                    clearTextEditingControllers();
                   }
                 },
                 child: Text(
-                  "register",
+                  "login",
                   style: GoogleFonts.aDLaMDisplay(color: AppTheme.light),
                 ),
               ),

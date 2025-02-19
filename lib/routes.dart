@@ -1,3 +1,4 @@
+import 'package:finence_tracker/screens/login_screen.dart';
 import 'package:finence_tracker/screens/main_screen.dart';
 import 'package:finence_tracker/screens/registeration_screen.dart';
 import 'package:go_router/go_router.dart';
@@ -13,6 +14,11 @@ class AppRouter {
       path: "/register",
       name: "/register",
       builder: (context, state) => const RegisterationScreen(),
+    ),
+    GoRoute(
+      path: "/login",
+      name: "/login",
+      builder: (context, state) => const LoginScreen(),
     ),
   ]);
 }
