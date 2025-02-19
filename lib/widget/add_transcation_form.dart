@@ -4,7 +4,6 @@ import 'package:finence_tracker/features/add_transcation/bloc/transcation_state.
 import 'package:finence_tracker/utitlies/app_theme.dart';
 import 'package:finence_tracker/utitlies/validators.dart';
 import 'package:finence_tracker/widget/mtext_form_field.dart';
-import 'package:finence_tracker/widget/nav_bar.dart';
 import 'package:finence_tracker/widget/scaffold_message_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
