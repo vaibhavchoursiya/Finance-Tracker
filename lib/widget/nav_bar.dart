@@ -1,9 +1,10 @@
 import 'dart:ui';
+import 'package:finence_tracker/features/login/bloc/login_bloc.dart';
+import 'package:finence_tracker/features/login/bloc/login_event.dart';
 import 'package:finence_tracker/utitlies/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'package:flutter/cupertino.dart';
 
 class NavBar extends StatelessWidget {
   const NavBar({
@@ -12,6 +13,7 @@ class NavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final loginBloc = context.read<LoginBloc>();
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -50,15 +52,12 @@ class NavBar extends StatelessWidget {
             ),
           ],
         ),
-        Container(
-          width: 45.0,
-          height: 45.0,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.0),
-            color: AppTheme.primary,
-          ),
-          child: const Icon(
-            CupertinoIcons.settings,
+        IconButton(
+          onPressed: () {
+            loginBloc.add(LoginOutEvent());
+          },
+          icon: const Icon(
+            Icons.logout,
             color: AppTheme.light,
           ),
         )
