@@ -11,6 +11,7 @@
 migrate_working_dir/
 README.md
 android/app/google-services.json
+lib/firebase_options.dart 
 
 
 # IntelliJ related
