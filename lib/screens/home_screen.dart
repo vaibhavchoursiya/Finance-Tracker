@@ -1,12 +1,34 @@
+import 'package:finence_tracker/features/show_transcation/bloc/show_transcation_bloc.dart';
+import 'package:finence_tracker/features/show_transcation/bloc/show_transcation_event.dart';
+import 'package:finence_tracker/features/show_transcation/bloc/show_transcation_state.dart';
 import 'package:finence_tracker/utitlies/app_theme.dart';
 import 'package:finence_tracker/widget/balance_card.dart';
 import 'package:finence_tracker/widget/nav_bar.dart';
 import 'package:finence_tracker/widget/transcation_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await initialization();
+    });
+  }
+
+  Future<void> initialization() async {
+    final showTranscationBloc = context.read<ShowTranscationBloc>();
+    showTranscationBloc.add(ShowTranscationEvent());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +63,19 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(
                 height: 10.0,
               ),
-              TranscationView(),
+              BlocBuilder<ShowTranscationBloc, ShowTranscationState>(
+                  builder: (context, state) {
+                if (state is ShowTranscationLoadingState) {
+                  return const CircularProgressIndicator();
+                } else if (state is ShowTranscationSuccessState) {
+                  return TranscationView(
+                    transcations: state.transcatins,
+                  );
+                }
+                return const CircularProgressIndicator(
+                  color: Colors.greenAccent,
+                );
+              }),
             ],
           ),
         ),
