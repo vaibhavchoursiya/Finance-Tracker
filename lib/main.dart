@@ -3,7 +3,6 @@ import 'package:finence_tracker/features/change_screen/bloc/change_screen_bloc.d
 import 'package:finence_tracker/features/login/bloc/login_bloc.dart';
 import 'package:finence_tracker/features/password_visibilty_toggle/bloc/password_visibilty_toggle_bloc.dart';
 import 'package:finence_tracker/firebase_options.dart';
-import 'package:finence_tracker/models/transcational_model.dart';
 import 'package:finence_tracker/routes.dart';
 import 'package:finence_tracker/services/db_services.dart';
 import 'package:firebase_core/firebase_core.dart';

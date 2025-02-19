@@ -1,5 +1,6 @@
 import 'package:finence_tracker/utitlies/app_theme.dart';
 import 'package:finence_tracker/utitlies/validators.dart';
+import 'package:finence_tracker/widget/add_transcation_button_widget.dart';
 import 'package:finence_tracker/widget/add_transcation_navbar.dart';
 import 'package:finence_tracker/widget/mtext_form_field.dart';
 import 'package:flutter/material.dart';
@@ -95,7 +96,8 @@ class _AddTranscationFormState extends State<AddTranscationForm> {
               controller: _dropdownValueController,
               iconData: Icons.menu,
               validator: Validators.validateString,
-            )
+            ),
+            const AddTranscationButtonWidget(),
           ],
         ));
   }
