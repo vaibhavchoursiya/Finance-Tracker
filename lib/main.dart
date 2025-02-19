@@ -1,3 +1,4 @@
+import 'package:finence_tracker/features/add_transcation/bloc/add_transcation_bloc.dart';
 import 'package:finence_tracker/features/auth/bloc/auth_bloc.dart';
 import 'package:finence_tracker/features/change_screen/bloc/change_screen_bloc.dart';
 import 'package:finence_tracker/features/login/bloc/login_bloc.dart';
@@ -37,6 +38,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => LoginBloc(),
+        ),
+        BlocProvider(
+          create: (context) => AddTranscationBloc(),
         ),
       ],
       child: MaterialApp.router(

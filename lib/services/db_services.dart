@@ -20,8 +20,13 @@ class DbServices {
     print("Db is constructed");
   }
 
-  static Future<void> insertTranscation(TranscationalModel transcation) async {
-    await database.insert("Transcations", transcation.toMap());
+  static Future<Map> insertTranscation(TranscationalModel transcation) async {
+    final res = await database.insert("Transcations", transcation.toMap());
+
+    if (res != 0) {
+      return {"status": "success", "message": "added"};
+    }
+    return {"status": "failed", "errorMessage": "failed to add."};
   }
 
   static Future<List> getTranscations() async {
