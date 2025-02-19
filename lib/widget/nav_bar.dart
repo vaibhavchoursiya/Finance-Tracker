@@ -1,9 +1,11 @@
 import 'dart:ui';
 import 'package:finence_tracker/features/login/bloc/login_bloc.dart';
 import 'package:finence_tracker/features/login/bloc/login_event.dart';
+import 'package:finence_tracker/screens/login_screen.dart';
 import 'package:finence_tracker/utitlies/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class NavBar extends StatelessWidget {
@@ -55,6 +57,7 @@ class NavBar extends StatelessWidget {
         IconButton(
           onPressed: () {
             loginBloc.add(LoginOutEvent());
+            context.go("/login");
           },
           icon: const Icon(
             Icons.logout,

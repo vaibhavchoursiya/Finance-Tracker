@@ -23,6 +23,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
     on<LoginOutEvent>((event, emit) async {
       await FirebaseServices.logoutUser();
+      emit(LoginInitialState());
     });
   }
 }
