@@ -33,4 +33,34 @@ class FirebaseServices {
       };
     }
   }
+
+  static Future loginUser(UserModel user) async {
+    try {
+      final UserCredential userCredential =
+          await firebaseAuth.signInWithEmailAndPassword(
+              email: user.email, password: user.password);
+
+      final User? firebaseUser = userCredential.user;
+
+      if (firebaseUser != null) {
+        return {
+          "status": "success",
+          "message": "login successful",
+          "name": user.name
+        };
+      }
+    } on FirebaseAuthException catch (e) {
+      return {
+        "errorMessage": e.message,
+        "status": "failed",
+      };
+    }
+  }
+
+  static Future logoutUser() async {
+    final User? firebaseUser = FirebaseAuth.instance.currentUser;
+    if (firebaseUser != null) {
+      await FirebaseAuth.instance.signOut();
+    }
+  }
 }

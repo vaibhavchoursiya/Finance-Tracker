@@ -1,6 +1,8 @@
 import 'package:finence_tracker/screens/login_screen.dart';
 import 'package:finence_tracker/screens/main_screen.dart';
 import 'package:finence_tracker/screens/registeration_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRouter {
@@ -13,7 +15,18 @@ class AppRouter {
     GoRoute(
       path: "/register",
       name: "/register",
-      builder: (context, state) => const RegisterationScreen(),
+      builder: (context, state) {
+        return StreamBuilder(
+            stream: FirebaseAuth.instance.authStateChanges(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                final String? name = snapshot.data?.displayName;
+                debugPrint(name);
+                return const MainScreen();
+              }
+              return const RegisterationScreen();
+            });
+      },
     ),
     GoRoute(
       path: "/login",
