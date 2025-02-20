@@ -1,3 +1,5 @@
+import 'package:finence_tracker/features/show_balance/bloc/show_balance_bloc.dart';
+import 'package:finence_tracker/features/show_balance/bloc/show_balance_event.dart';
 import 'package:finence_tracker/features/show_transcation/bloc/show_transcation_bloc.dart';
 import 'package:finence_tracker/features/show_transcation/bloc/show_transcation_event.dart';
 import 'package:finence_tracker/features/show_transcation/bloc/show_transcation_state.dart';
@@ -27,6 +29,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> initialization() async {
     final showTranscationBloc = context.read<ShowTranscationBloc>();
+    final showBalanceBloc = context.read<ShowBalanceBloc>();
+    showBalanceBloc.add(ShowBalanceEvent());
     showTranscationBloc.add(ShowTranscationEvent());
   }
 

@@ -27,5 +27,10 @@ class AddTranscationBloc extends Bloc<TranscationEvent, TranscationState> {
     on<ResetAddTranscationEvent>((event, emit) {
       emit(TranscationInitialState());
     });
+
+    on<DeleteTranscationEvent>((event, emit) async {
+      await DbServices.deleteTranscation(event.id);
+      emit(TranscationInitialState());
+    });
   }
 }

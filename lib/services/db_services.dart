@@ -46,8 +46,37 @@ class DbServices {
     return transcations;
   }
 
-  static Future<void> deleteTranscation(String id) async {
-    await database
-        .delete("Transcations", where: 'columnId = ?', whereArgs: [id]);
+  static Future getBalance() async {
+    final List data = await database.rawQuery('SELECT * FROM Transcations');
+    List income = [];
+    List expenses = [];
+
+    for (var item in data) {
+      if (item["transcationalType"] == "Exp") {
+        expenses.add(item["amount"]);
+      } else if (item["transcationalType"] == "Inc") {
+        income.add(item["amount"]);
+      }
+    }
+
+    double totalIncome = 0.0;
+    for (var item in income) {
+      totalIncome += item;
+    }
+
+    double totalExpenses = 0.0;
+    for (var item in expenses) {
+      totalExpenses += item;
+    }
+
+    return {
+      "income": totalExpenses,
+      "expenses": totalExpenses,
+      "totalBalance": totalIncome - totalExpenses
+    };
+  }
+
+  static Future<void> deleteTranscation(int id) async {
+    await database.delete("Transcations", where: 'id = ?', whereArgs: [id]);
   }
 }

@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TotalBalanceWidget extends StatelessWidget {
+  final double totalBalance;
   const TotalBalanceWidget({
     super.key,
+    required this.totalBalance,
   });
 
   @override
@@ -35,7 +37,7 @@ class TotalBalanceWidget extends StatelessWidget {
                 height: 4.5,
               ),
               Text(
-                "\$ 3000.00",
+                "\$ $totalBalance",
                 style: GoogleFonts.roboto(
                   fontSize: 32.0,
                   color: Colors.white,

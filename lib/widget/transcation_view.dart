@@ -20,6 +20,7 @@ class TranscationView extends StatelessWidget {
           final TranscationalModel transcation = transcations[index];
 
           return TranscationTile(
+            id: transcation.id,
             amount: transcation.amount,
             category: transcation.category,
             date: DateFormat('yyyy-MM-dd').format(transcation.date),

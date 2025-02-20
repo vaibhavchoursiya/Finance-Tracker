@@ -15,4 +15,10 @@ class AddTranscationEvent extends TranscationEvent {
       required this.transcationalType});
 }
 
+class DeleteTranscationEvent extends TranscationEvent {
+  final int id;
+
+  DeleteTranscationEvent({required this.id});
+}
+
 class ResetAddTranscationEvent extends TranscationEvent {}

@@ -1,6 +1,10 @@
 import 'package:finence_tracker/features/add_transcation/bloc/add_transcation_bloc.dart';
 import 'package:finence_tracker/features/add_transcation/bloc/add_transcation_event.dart';
 import 'package:finence_tracker/features/add_transcation/bloc/transcation_state.dart';
+import 'package:finence_tracker/features/show_balance/bloc/show_balance_bloc.dart';
+import 'package:finence_tracker/features/show_balance/bloc/show_balance_event.dart';
+import 'package:finence_tracker/features/show_transcation/bloc/show_transcation_bloc.dart';
+import 'package:finence_tracker/features/show_transcation/bloc/show_transcation_event.dart';
 import 'package:finence_tracker/utitlies/app_theme.dart';
 import 'package:finence_tracker/utitlies/validators.dart';
 import 'package:finence_tracker/widget/mtext_form_field.dart';
@@ -42,6 +46,9 @@ class _AddTranscationFormState extends State<AddTranscationForm> {
   @override
   Widget build(BuildContext context) {
     final addTranscationBloc = context.read<AddTranscationBloc>();
+    final showBalanceBloc = context.read<ShowBalanceBloc>();
+    final showTranscationBloc = context.read<ShowTranscationBloc>();
+
     return BlocConsumer<AddTranscationBloc, TranscationState>(
         listener: (context, state) {
       if (state is TranscationFailedState) {
@@ -105,6 +112,8 @@ class _AddTranscationFormState extends State<AddTranscationForm> {
                           amount: double.parse(_amountController.text),
                           date: _dateController.text,
                           transcationalType: _dropdownValueController.text));
+                      showTranscationBloc.add(ShowTranscationEvent());
+                      showBalanceBloc.add(ShowBalanceEvent());
                     }
                   },
                   style: ElevatedButton.styleFrom(
