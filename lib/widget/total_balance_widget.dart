@@ -40,7 +40,7 @@ class TotalBalanceWidget extends StatelessWidget {
                   height: 4.5,
                 ),
                 Text(
-                  "\$ $totalBalance",
+                  "\₹ $totalBalance",
                   style: GoogleFonts.roboto(
                     fontSize: 32.0,
                     color: Colors.white,

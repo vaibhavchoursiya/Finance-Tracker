@@ -103,7 +103,7 @@ class TransactionTile extends StatelessWidget {
                   Text(
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    "\$ ${amount.toStringAsFixed(2)}",
+                    "\₹ ${amount.toStringAsFixed(2)}",
                     style: GoogleFonts.aDLaMDisplay(
                       color: AppTheme.light,
                       fontSize: 18.0,
