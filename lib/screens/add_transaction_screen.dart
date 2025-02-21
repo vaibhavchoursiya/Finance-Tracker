@@ -1,6 +1,6 @@
 import 'package:finence_tracker/utitlies/app_theme.dart';
-import 'package:finence_tracker/widget/add_transcation_form.dart';
-import 'package:finence_tracker/widget/add_transcation_navbar.dart';
+import 'package:finence_tracker/widget/add_transaction_form.dart';
+import 'package:finence_tracker/widget/add_transaction_navbar.dart';
 import 'package:flutter/material.dart';
 
 class AddTranscationScreen extends StatelessWidget {
@@ -18,8 +18,8 @@ class AddTranscationScreen extends StatelessWidget {
               SizedBox(
                 height: 16.0,
               ),
-              AddTranscationNavbar(),
-              AddTranscationForm(),
+              AddTransactionNavbar(),
+              AddTransactionForm(),
             ],
           ),
         ),

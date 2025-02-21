@@ -1,8 +1,6 @@
-import 'package:finence_tracker/features/show_balance/bloc/show_balance_bloc.dart';
-import 'package:finence_tracker/features/show_balance/bloc/show_balance_event.dart';
-import 'package:finence_tracker/features/show_transcation/bloc/show_transcation_bloc.dart';
-import 'package:finence_tracker/features/show_transcation/bloc/show_transcation_event.dart';
-import 'package:finence_tracker/features/show_transcation/bloc/show_transcation_state.dart';
+import 'package:finence_tracker/features/transaction/bloc/transaction_bloc.dart';
+import 'package:finence_tracker/features/transaction/bloc/transaction_event.dart';
+import 'package:finence_tracker/features/transaction/bloc/transaction_state.dart';
 import 'package:finence_tracker/utitlies/app_theme.dart';
 import 'package:finence_tracker/widget/balance_card.dart';
 import 'package:finence_tracker/widget/nav_bar.dart';
@@ -28,10 +26,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> initialization() async {
-    final showTranscationBloc = context.read<ShowTranscationBloc>();
-    final showBalanceBloc = context.read<ShowBalanceBloc>();
-    showBalanceBloc.add(ShowBalanceEvent());
-    showTranscationBloc.add(ShowTranscationEvent());
+    final transactionBloc = context.read<TransactionBloc>();
+    transactionBloc.add(LoadTransactionEvent());
   }
 
   @override
@@ -47,10 +43,25 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 35.0,
               ),
-              const Stack(
+              Stack(
                 children: [
-                  LightEffectLine(),
-                  BalanceCard(),
+                  const LightEffectLine(),
+                  BlocBuilder<TransactionBloc, TransactionState>(
+                      builder: (context, state) {
+                    if (state is LoadedTransaction) {
+                      return BalanceCard(
+                          totalBalance: state.totalBalance,
+                          totalExpenses: state.totalExpenses,
+                          totalIncome: state.totalIncome);
+                    } else if (state is LoadingTransaction) {
+                      return const CircularProgressIndicator();
+                    }
+
+                    return const BalanceCard(
+                        totalBalance: 0.0,
+                        totalExpenses: 0.0,
+                        totalIncome: 0.0);
+                  }),
                 ],
               ),
               const SizedBox(
@@ -67,19 +78,17 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 10.0,
               ),
-              BlocBuilder<ShowTranscationBloc, ShowTranscationState>(
+              BlocBuilder<TransactionBloc, TransactionState>(
                   builder: (context, state) {
-                if (state is ShowTranscationLoadingState) {
-                  return const CircularProgressIndicator();
-                } else if (state is ShowTranscationSuccessState) {
+                if (state is LoadedTransaction) {
                   return TranscationView(
-                    transcations: state.transcatins,
+                    transcations: state.transactions,
                   );
+                } else if (state is LoadingTransaction) {
+                  return const CircularProgressIndicator();
                 }
-                return const CircularProgressIndicator(
-                  color: Colors.greenAccent,
-                );
-              }),
+                return const TranscationView(transcations: []);
+              })
             ],
           ),
         ),

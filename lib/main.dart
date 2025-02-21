@@ -1,10 +1,9 @@
-import 'package:finence_tracker/features/add_transcation/bloc/add_transcation_bloc.dart';
 import 'package:finence_tracker/features/auth/bloc/auth_bloc.dart';
 import 'package:finence_tracker/features/change_screen/bloc/change_screen_bloc.dart';
 import 'package:finence_tracker/features/login/bloc/login_bloc.dart';
 import 'package:finence_tracker/features/password_visibilty_toggle/bloc/password_visibilty_toggle_bloc.dart';
-import 'package:finence_tracker/features/show_balance/bloc/show_balance_bloc.dart';
-import 'package:finence_tracker/features/show_transcation/bloc/show_transcation_bloc.dart';
+import 'package:finence_tracker/features/transaction/bloc/transaction_bloc.dart';
+
 import 'package:finence_tracker/firebase_options.dart';
 import 'package:finence_tracker/routes.dart';
 import 'package:finence_tracker/services/db_services.dart';
@@ -41,15 +40,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => LoginBloc(),
         ),
-        BlocProvider(
-          create: (context) => AddTranscationBloc(),
-        ),
-        BlocProvider(
-          create: (context) => ShowTranscationBloc(),
-        ),
-        BlocProvider(
-          create: (context) => ShowBalanceBloc(),
-        ),
+        BlocProvider(create: (context) => TransactionBloc())
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

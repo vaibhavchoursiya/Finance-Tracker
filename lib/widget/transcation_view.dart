@@ -1,5 +1,5 @@
-import 'package:finence_tracker/models/transcational_model.dart';
-import 'package:finence_tracker/widget/transcation_tile.dart';
+import 'package:finence_tracker/models/transaction_model.dart';
+import 'package:finence_tracker/widget/transaction_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -17,9 +17,9 @@ class TranscationView extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         itemCount: transcations.length,
         itemBuilder: (context, index) {
-          final TranscationalModel transcation = transcations[index];
+          final TransactionModel transcation = transcations[index];
 
-          return TranscationTile(
+          return TransactionTile(
             id: transcation.id,
             amount: transcation.amount,
             category: transcation.category,

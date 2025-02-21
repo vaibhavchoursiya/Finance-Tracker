@@ -1,20 +1,13 @@
-import 'package:finence_tracker/features/add_transcation/bloc/add_transcation_bloc.dart';
-import 'package:finence_tracker/features/add_transcation/bloc/add_transcation_event.dart';
-import 'package:finence_tracker/features/show_balance/bloc/show_balance_bloc.dart';
-import 'package:finence_tracker/features/show_balance/bloc/show_balance_event.dart';
-import 'package:finence_tracker/features/show_transcation/bloc/show_transcation_bloc.dart';
-import 'package:finence_tracker/features/show_transcation/bloc/show_transcation_event.dart';
 import 'package:finence_tracker/utitlies/app_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class TranscationTile extends StatelessWidget {
+class TransactionTile extends StatelessWidget {
   final int id;
   final String category;
   final double amount;
   final String date;
-  const TranscationTile({
+  const TransactionTile({
     super.key,
     required this.category,
     required this.amount,
@@ -24,16 +17,7 @@ class TranscationTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final addTranscationBloc = context.read<AddTranscationBloc>();
-    final showBalanceBloc = context.read<ShowBalanceBloc>();
-    final showTranscationBloc = context.read<ShowTranscationBloc>();
-
     return GestureDetector(
-      onDoubleTap: () {
-        addTranscationBloc.add(DeleteTranscationEvent(id: id));
-        showBalanceBloc.add(ShowBalanceEvent());
-        showTranscationBloc.add(ShowTranscationEvent());
-      },
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 10.0),
         padding: const EdgeInsets.all(14.0),
