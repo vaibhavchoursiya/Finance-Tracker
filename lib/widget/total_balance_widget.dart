@@ -20,31 +20,35 @@ class TotalBalanceWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Column(
-            children: [
-              Chip(
-                backgroundColor: AppTheme.dark,
-                label: Text(
-                  "Total balance",
-                  style: GoogleFonts.aDLaMDisplay(
-                    fontSize: 14.0,
-                    color: AppTheme.light.withOpacity(0.6),
-                    height: 1.2,
+          Expanded(
+            child: Column(
+              children: [
+                Chip(
+                  backgroundColor: AppTheme.dark,
+                  label: Text(
+                    maxLines: 1,
+                    overflow: TextOverflow.fade,
+                    "Total balance",
+                    style: GoogleFonts.aDLaMDisplay(
+                      fontSize: 14.0,
+                      color: AppTheme.light.withOpacity(0.6),
+                      height: 1.2,
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(
-                height: 4.5,
-              ),
-              Text(
-                "\$ $totalBalance",
-                style: GoogleFonts.roboto(
-                  fontSize: 32.0,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
+                const SizedBox(
+                  height: 4.5,
                 ),
-              ),
-            ],
+                Text(
+                  "\$ $totalBalance",
+                  style: GoogleFonts.roboto(
+                    fontSize: 32.0,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),

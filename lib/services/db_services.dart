@@ -34,7 +34,9 @@ class DbServices {
     final List data = await database.rawQuery('SELECT * FROM $tableName');
     List<TransactionModel> transactions = [];
 
-    for (var item in data) {
+    for (var i = data.length - 1; i >= 0; i--) {
+      final item = data[i];
+
       transactions.add(TransactionModel(
           id: item["id"],
           category: item["category"],

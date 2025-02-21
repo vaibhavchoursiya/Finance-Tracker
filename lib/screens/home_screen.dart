@@ -10,7 +10,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final String userName;
+  const HomeScreen({super.key, required this.userName});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -39,7 +40,9 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const NavBar(),
+              NavBar(
+                userName: widget.userName,
+              ),
               const SizedBox(
                 height: 35.0,
               ),
@@ -49,7 +52,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   BlocBuilder<TransactionBloc, TransactionState>(
                       builder: (context, state) {
                     if (state is LoadedTransaction) {
-                      print(state);
                       return BalanceCard(
                           totalBalance: state.totalBalance,
                           totalExpenses: state.totalExpenses,

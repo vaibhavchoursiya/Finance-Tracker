@@ -96,24 +96,28 @@ class TransactionTile extends StatelessWidget {
                 ),
               ],
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text(
-                  "\$ ${amount.toStringAsFixed(2)}",
-                  style: GoogleFonts.aDLaMDisplay(
-                    color: AppTheme.light,
-                    fontSize: 18.0,
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    "\$ ${amount.toStringAsFixed(2)}",
+                    style: GoogleFonts.aDLaMDisplay(
+                      color: AppTheme.light,
+                      fontSize: 18.0,
+                    ),
                   ),
-                ),
-                Text(
-                  date,
-                  style: GoogleFonts.aDLaMDisplay(
-                    color: AppTheme.light.withOpacity(0.6),
-                    fontSize: 14.0,
+                  Text(
+                    date,
+                    style: GoogleFonts.aDLaMDisplay(
+                      color: AppTheme.light.withOpacity(0.6),
+                      fontSize: 14.0,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             )
           ],
         ),

@@ -9,7 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MainScreen extends StatelessWidget {
-  const MainScreen({super.key});
+  final String userName;
+  const MainScreen({super.key, required this.userName});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,9 @@ class MainScreen extends StatelessWidget {
       body: BlocBuilder<ChangeScreenBloc, ChangeScreenState>(
           builder: (context, state) {
         if (state.currentIndex != 1) {
-          return const HomeScreen();
+          return HomeScreen(
+            userName: userName,
+          );
         }
         return const TranscationScreen();
       }),

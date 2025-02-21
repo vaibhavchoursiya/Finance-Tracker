@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:finence_tracker/features/auth/bloc/auth_bloc.dart';
 import 'package:finence_tracker/features/auth/bloc/auth_event.dart';
 import 'package:finence_tracker/features/login/bloc/login_bloc.dart';
@@ -10,8 +9,10 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class NavBar extends StatelessWidget {
+  final String userName;
   const NavBar({
     super.key,
+    required this.userName,
   });
 
   @override
@@ -35,7 +36,7 @@ class NavBar extends StatelessWidget {
               width: 15.0,
             ),
             Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   "welcome 👋",
@@ -46,7 +47,7 @@ class NavBar extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "Jone Doe",
+                  userName,
                   style: GoogleFonts.roboto(
                     fontSize: 20.0,
                     fontWeight: FontWeight.bold,

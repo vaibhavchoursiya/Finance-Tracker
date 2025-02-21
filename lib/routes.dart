@@ -11,7 +11,9 @@ class AppRouter {
     GoRoute(
       path: "/home",
       name: "/home",
-      builder: (context, state) => const MainScreen(),
+      builder: (context, state) => const MainScreen(
+        userName: "unKnown",
+      ),
     ),
     GoRoute(
       path: "/register",
@@ -24,7 +26,9 @@ class AppRouter {
                 final String? name = snapshot.data?.displayName;
                 debugPrint(name);
                 if (name != null) {
-                  return const MainScreen();
+                  return MainScreen(
+                    userName: name,
+                  );
                 }
               }
               return const RegisterationScreen();

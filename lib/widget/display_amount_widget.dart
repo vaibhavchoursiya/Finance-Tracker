@@ -48,27 +48,33 @@ class DisplayAmountWidget extends StatelessWidget {
             const SizedBox(
               width: 10.0,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: GoogleFonts.aDLaMDisplay(
-                    color: AppTheme.light.withOpacity(0.5),
-                    height: 1.2,
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: GoogleFonts.aDLaMDisplay(
+                      color: AppTheme.light.withOpacity(0.5),
+                      height: 1.2,
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 4.0,
-                ),
-                Text(
-                  amount.toStringAsFixed(2),
-                  style: GoogleFonts.aDLaMDisplay(
-                    color: Colors.white,
-                    fontSize: 16.0,
+                  const SizedBox(
+                    height: 4.0,
                   ),
-                ),
-              ],
+                  Text(
+                    maxLines: 1,
+                    overflow: TextOverflow.fade,
+                    amount.toStringAsFixed(2),
+                    style: GoogleFonts.aDLaMDisplay(
+                      color: Colors.white,
+                      fontSize: 16.0,
+                    ),
+                  ),
+                ],
+              ),
             )
           ],
         ),
