@@ -26,7 +26,7 @@ class AddTransactionNavbar extends StatelessWidget {
           width: 6.0,
         ),
         Text(
-          "Add Transcation",
+          "Add Transaction",
           style:
               GoogleFonts.aDLaMDisplay(color: AppTheme.light, fontSize: 22.0),
         ),
