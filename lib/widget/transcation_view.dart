@@ -20,6 +20,8 @@ class TranscationView extends StatelessWidget {
           final TransactionModel transcation = transcations[index];
 
           return TransactionTile(
+            note: transcation.note,
+            transactionType: transcation.transactionType,
             id: transcation.id,
             amount: transcation.amount,
             category: transcation.category,

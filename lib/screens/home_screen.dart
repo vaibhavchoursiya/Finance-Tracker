@@ -49,6 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   BlocBuilder<TransactionBloc, TransactionState>(
                       builder: (context, state) {
                     if (state is LoadedTransaction) {
+                      print(state);
                       return BalanceCard(
                           totalBalance: state.totalBalance,
                           totalExpenses: state.totalExpenses,

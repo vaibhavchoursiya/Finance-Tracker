@@ -218,6 +218,8 @@ class MDropDownFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    controller.text = "Exp";
+
     return Column(
       children: [
         DropdownButtonFormField(
@@ -257,7 +259,9 @@ class MDropDownFormField extends StatelessWidget {
             ),
           ],
           onChanged: (value) {
-            controller.text = value!;
+            if (value != null) {
+              controller.text = value;
+            }
           },
           icon: Icon(iconData),
         ),

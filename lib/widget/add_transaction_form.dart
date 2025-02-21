@@ -1,7 +1,10 @@
+import 'package:finence_tracker/features/transaction/bloc/transaction_bloc.dart';
+import 'package:finence_tracker/features/transaction/bloc/transaction_event.dart';
 import 'package:finence_tracker/utitlies/app_theme.dart';
 import 'package:finence_tracker/utitlies/validators.dart';
 import 'package:finence_tracker/widget/mtext_form_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AddTransactionForm extends StatefulWidget {
@@ -73,7 +76,18 @@ class _AddTransactionFormState extends State<AddTransactionForm> {
             height: 50.0,
             child: ElevatedButton(
               onPressed: () {
-                if (addTranscationFormKey.currentState!.validate()) {}
+                if (addTranscationFormKey.currentState!.validate()) {
+                  final transactionBloc = context.read<TransactionBloc>();
+                  transactionBloc.add(
+                    AddTransactionEvent(
+                      note: _noteController.text,
+                      category: _categoryController.text,
+                      transactionType: _dropdownValueController.text,
+                      date: _dateController.text,
+                      amount: double.parse(_amountController.text),
+                    ),
+                  );
+                }
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppTheme.primary,

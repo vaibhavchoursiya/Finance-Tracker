@@ -21,8 +21,8 @@ class DbServices {
     print("Db is constructed");
   }
 
-  static Future<Map> insertTranscation(TransactionModel transcation) async {
-    final res = await database.insert(tableName, transcation.toMap());
+  static Future<Map> insertTranscation(TransactionModel transaction) async {
+    final res = await database.insert(tableName, transaction.toMap());
 
     if (res != 0) {
       return {"status": "success", "message": "added"};
@@ -71,7 +71,7 @@ class DbServices {
     }
 
     return {
-      "totalIncome": totalExpenses,
+      "totalIncome": totalIncome,
       "totalExpenses": totalExpenses,
       "totalBalance": totalIncome - totalExpenses
     };

@@ -22,3 +22,15 @@ class FailedTransaction extends TransactionState {
 
   FailedTransaction({required this.message});
 }
+
+class AddedTransacation extends TransactionState {
+  final String message;
+
+  AddedTransacation({required this.message});
+}
+
+class FailedAddedTransaction extends TransactionState {
+  final String errorMessage;
+
+  FailedAddedTransaction({required this.errorMessage});
+}

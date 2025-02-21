@@ -1,30 +1,51 @@
+import 'dart:math';
+
+import 'package:finence_tracker/features/transaction/bloc/transaction_bloc.dart';
+import 'package:finence_tracker/features/transaction/bloc/transaction_event.dart';
 import 'package:finence_tracker/utitlies/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TransactionTile extends StatelessWidget {
+  final String transactionType;
+  final String note;
   final int id;
   final String category;
   final double amount;
   final String date;
+
   const TransactionTile({
     super.key,
+    required this.transactionType,
     required this.category,
     required this.amount,
     required this.date,
     required this.id,
+    required this.note,
   });
 
   @override
   Widget build(BuildContext context) {
+    final transactionBloc = context.read<TransactionBloc>();
+
     return GestureDetector(
+      onDoubleTap: () {
+        transactionBloc.add(DeleteTransactionEvent(id: id));
+      },
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 10.0),
         padding: const EdgeInsets.all(14.0),
         decoration: BoxDecoration(
-          color: AppTheme.light.withOpacity(0.125),
           borderRadius: BorderRadius.circular(
             10.0,
+          ),
+          gradient: LinearGradient(
+            colors: [
+              AppTheme.dark.withOpacity(0.125),
+              (transactionType == "Exp") ? Colors.redAccent : Colors.green,
+            ],
+            transform: const GradientRotation(pi / 4),
           ),
         ),
         child: Row(
@@ -33,25 +54,44 @@ class TransactionTile extends StatelessWidget {
             Row(
               children: [
                 Container(
-                  width: 60,
-                  height: 60,
+                  width: 55,
+                  height: 55,
                   decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 67, 71, 92),
+                    color: AppTheme.light.withOpacity(0.125),
                     borderRadius: BorderRadius.circular(30.0),
                   ),
-                  child: const Icon(
-                    Icons.shopping_bag,
-                    color: Colors.cyan,
+                  child: Icon(
+                    (transactionType == "Inc")
+                        ? Icons.monetization_on
+                        : Icons.monitor_heart_rounded,
+                    color: AppTheme.light,
                   ),
                 ),
                 const SizedBox(
                   width: 12.0,
                 ),
-                Text(
-                  category,
-                  style: GoogleFonts.aDLaMDisplay(
-                    color: AppTheme.light,
-                    fontSize: 18.0,
+                SizedBox(
+                  width: 110.0,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        category,
+                        style: GoogleFonts.aDLaMDisplay(
+                          color: AppTheme.light,
+                          fontSize: 18.0,
+                        ),
+                      ),
+                      Text(
+                        note,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: GoogleFonts.aDLaMDisplay(
+                          color: AppTheme.light.withOpacity(0.5),
+                          fontSize: 12.0,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
