@@ -1,5 +1,6 @@
 import 'package:finence_tracker/features/graph/graph_bloc.dart';
 import 'package:finence_tracker/features/graph/graph_state.dart';
+import 'package:finence_tracker/utitlies/app_theme.dart';
 import 'package:flutter/material.dart';
 
 import 'package:d_chart/d_chart.dart';
@@ -31,14 +32,14 @@ class TransactionChartWidget extends StatelessWidget {
                 return DateFormat('yy-MM-dd').format(domain);
               },
               labelStyle: const LabelStyle(
-                color: Colors.grey,
+                color: AppTheme.light,
                 fontSize: 10,
               ),
             ),
             measureAxis: MeasureAxis(
-              useGridLine: false,
+              useGridLine: true,
               gridLineStyle: LineStyle(
-                color: Colors.grey.shade200,
+                color: AppTheme.primary.withOpacity(0.125),
               ),
               numericTickProvider: const NumericTickProvider(
                 desiredMinTickCount: 6,
@@ -50,7 +51,7 @@ class TransactionChartWidget extends StatelessWidget {
                 return measure!.toInt().toString().padLeft(2, '0');
               },
               labelStyle: const LabelStyle(
-                color: Colors.grey,
+                color: AppTheme.light,
                 fontSize: 10,
               ),
             ),
