@@ -5,7 +5,7 @@ import 'package:finence_tracker/services/db_services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
-  TransactionBloc() : super(InitialTransaction()) {
+  TransactionBloc() : super(LoadingTransaction()) {
     on<LoadTransactionEvent>(_loadTransactionEvent);
     on<DeleteTransactionEvent>(_deleteTransactionEvent);
     on<AddTransactionEvent>(_addTransactionEvent);

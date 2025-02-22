@@ -1,37 +1,9 @@
 import 'package:finence_tracker/utitlies/app_theme.dart';
-import 'package:finence_tracker/widget/transaction_chart_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class TranscationScreen extends StatelessWidget {
-  const TranscationScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(28.0),
-      child: Column(
-        children: [
-          SizedBox(
-            height: 14.0,
-          ),
-          TransactionScreenNavbar(),
-          SizedBox(
-            height: 28.0,
-          ),
-          TransactionTabRow(),
-          SizedBox(
-            height: 28.0,
-          ),
-          TransactionChartWidget(),
-        ],
-      ),
-    );
-  }
-}
-
-class TransactionTabRow extends StatelessWidget {
-  const TransactionTabRow({
+class GraphScreenTabs extends StatelessWidget {
+  const GraphScreenTabs({
     super.key,
   });
 
@@ -79,26 +51,6 @@ class TransactionTabRow extends StatelessWidget {
               ),
             ),
           ),
-        ),
-      ],
-    );
-  }
-}
-
-class TransactionScreenNavbar extends StatelessWidget {
-  const TransactionScreenNavbar({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          "Transacations",
-          style:
-              GoogleFonts.aDLaMDisplay(color: AppTheme.light, fontSize: 22.0),
         ),
       ],
     );

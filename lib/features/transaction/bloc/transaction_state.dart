@@ -1,7 +1,5 @@
 abstract class TransactionState {}
 
-class InitialTransaction extends TransactionState {}
-
 class LoadingTransaction extends TransactionState {}
 
 class LoadedTransaction extends TransactionState {
