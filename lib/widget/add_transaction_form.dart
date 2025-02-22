@@ -6,6 +6,7 @@ import 'package:finence_tracker/widget/mtext_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class AddTransactionForm extends StatefulWidget {
   const AddTransactionForm({super.key});
@@ -62,7 +63,7 @@ class _AddTransactionFormState extends State<AddTransactionForm> {
           ),
           MDateFormField(
             iconData: Icons.date_range,
-            hintText: DateTime.now().toString(),
+            hintText: DateFormat('yyyy-MM-dd').format(DateTime.now()),
             controller: _dateController,
             validator: Validators.validateString,
           ),

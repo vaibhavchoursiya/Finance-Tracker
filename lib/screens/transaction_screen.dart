@@ -23,7 +23,7 @@ class TranscationScreen extends StatelessWidget {
           SizedBox(
             height: 28.0,
           ),
-          TransactionChartWidget()
+          TransactionChartWidget(),
         ],
       ),
     );

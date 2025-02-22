@@ -158,17 +158,20 @@ class MDateFormField extends StatelessWidget {
             color: AppTheme.light,
           ),
           onTap: () async {
+            final initialDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
             final DateTime? pickedDate = await showDatePicker(
               context: context,
               firstDate: DateTime(2025),
               lastDate: DateTime(2100),
-              initialDate: DateTime.now(),
+              initialDate: DateTime.parse(initialDate),
               barrierColor: AppTheme.primary,
             );
             if (pickedDate != null) {
               String formattedDate =
                   DateFormat('yyyy-MM-dd').format(pickedDate);
               controller.text = formattedDate;
+            } else {
+              controller.text = initialDate;
             }
           },
           validator: (value) {
