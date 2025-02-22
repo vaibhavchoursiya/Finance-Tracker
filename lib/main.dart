@@ -1,5 +1,6 @@
 import 'package:finence_tracker/features/auth/bloc/auth_bloc.dart';
 import 'package:finence_tracker/features/change_screen/bloc/change_screen_bloc.dart';
+import 'package:finence_tracker/features/graph/graph_bloc.dart';
 import 'package:finence_tracker/features/login/bloc/login_bloc.dart';
 import 'package:finence_tracker/features/password_visibilty_toggle/bloc/password_visibilty_toggle_bloc.dart';
 import 'package:finence_tracker/features/transaction/bloc/transaction_bloc.dart';
@@ -40,7 +41,12 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => LoginBloc(),
         ),
-        BlocProvider(create: (context) => TransactionBloc())
+        BlocProvider(
+          create: (context) => TransactionBloc(),
+        ),
+        BlocProvider(
+          create: (context) => GraphBloc(),
+        ),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
