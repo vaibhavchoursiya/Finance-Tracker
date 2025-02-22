@@ -82,9 +82,25 @@ class DbServices {
     await database.delete(tableName, where: 'id = ?', whereArgs: [id]);
   }
 
-  static Future getTransactionBetweenTwoDates(int date_1, int date_2) async {
+  static Future getTransactionBetweenTwoDates(
+      int date_1, int date_2, String transactionType) async {
     List data = await database.rawQuery(
-        '''SELECT * FROM $tableName WHERE date BETWEEN $date_1 AND $date_2''');
-    print(data);
+        '''SELECT * FROM $tableName WHERE transactionType = '$transactionType' AND date BETWEEN $date_1 AND $date_2''');
+
+    print("data between two datas : $data");
+    List<TransactionModel> transactions = [];
+
+    for (var i = data.length - 1; i >= 0; i--) {
+      final item = data[i];
+      transactions.add(TransactionModel(
+          id: item["id"],
+          category: item["category"],
+          date: DateTime.fromMillisecondsSinceEpoch((item["date"] * 1000)),
+          amount: item["amount"],
+          transactionType: item["transactionType"],
+          note: item["note"]));
+    }
+
+    return transactions;
   }
 }

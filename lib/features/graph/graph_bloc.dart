@@ -1,6 +1,10 @@
+import 'package:d_chart/d_chart.dart';
 import 'package:finence_tracker/features/graph/graph_event.dart';
 import 'package:finence_tracker/features/graph/graph_state.dart';
+import 'package:finence_tracker/models/transaction_model.dart';
+import 'package:finence_tracker/services/db_services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 class GraphBloc extends Bloc<GraphEvent, GraphState> {
   GraphBloc() : super(LoadingGraphState()) {
@@ -9,15 +13,79 @@ class GraphBloc extends Bloc<GraphEvent, GraphState> {
     on<SwitchGraphIncomeEvent>(_switchGraphIncomeEvent);
   }
 
-  void _loadDataGraphEvent(event, emit) {
-    emit(LoadedGraphState(transactionType: "Inc"));
+  int covertFormatedDateIntoUnixDate(DateTime date) {
+    return date.millisecondsSinceEpoch ~/ 1000;
   }
 
-  void _switchGraphExpensesEvent(event, emit) {
-    emit(LoadedGraphState(transactionType: "Exp"));
+  convertTransactionDataToTimeData(List<TransactionModel> transactions) async {
+    final List<TimeData> series = [];
+    for (var t in transactions) {
+      series.add(TimeData(domain: t.date, measure: t.amount));
+    }
+    print("series data: $series");
+    return series;
   }
 
-  void _switchGraphIncomeEvent(event, emit) {
-    emit(LoadedGraphState(transactionType: "Inc"));
+  getGraphInitalDataBasedOnTransactionType(String transactionType) async {
+    final currentDate = DateTime.now();
+    final startDate =
+        DateTime.parse(DateFormat('yyyy-MM-dd').format(currentDate));
+    final endDate = DateTime.parse(
+      DateFormat('yyyy-MM-dd').format(
+        currentDate.add(
+          const Duration(days: 30),
+        ),
+      ),
+    );
+
+    List<TransactionModel> transactions = [];
+    transactions = await DbServices.getTransactionBetweenTwoDates(
+        covertFormatedDateIntoUnixDate(startDate),
+        covertFormatedDateIntoUnixDate(endDate),
+        transactionType);
+
+    print(transactions);
+    List series = await convertTransactionDataToTimeData(transactions);
+
+    return {
+      "startDate": startDate,
+      "endDate": endDate,
+      "series": series,
+      "transactions": transactions,
+      "transactionType": transactionType
+    };
+  }
+
+  void _loadDataGraphEvent(event, emit) async {
+    final data = await getGraphInitalDataBasedOnTransactionType("Inc");
+
+    emit(LoadedGraphState(
+        transactionType: data["transactionType"],
+        startDate: data["startDate"],
+        endDate: data["endDate"],
+        series: data["series"],
+        transcations: data["transactions"]));
+  }
+
+  void _switchGraphExpensesEvent(event, emit) async {
+    final data = await getGraphInitalDataBasedOnTransactionType("Exp");
+
+    emit(LoadedGraphState(
+        transactionType: data["transactionType"],
+        startDate: data["startDate"],
+        endDate: data["endDate"],
+        series: data["series"],
+        transcations: data["transactions"]));
+  }
+
+  void _switchGraphIncomeEvent(event, emit) async {
+    final data = await getGraphInitalDataBasedOnTransactionType("Inc");
+
+    emit(LoadedGraphState(
+        transactionType: data["transactionType"],
+        startDate: data["startDate"],
+        endDate: data["endDate"],
+        series: data["series"],
+        transcations: data["transactions"]));
   }
 }

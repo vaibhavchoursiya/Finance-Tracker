@@ -6,31 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class GraphScreenTabs extends StatefulWidget {
+class GraphScreenTabs extends StatelessWidget {
   const GraphScreenTabs({super.key});
 
   @override
-  _GraphScreenTabsState createState() => _GraphScreenTabsState();
-}
-
-class _GraphScreenTabsState extends State<GraphScreenTabs> {
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await initialization();
-    });
-  }
-
-  Future<void> initialization() async {
-    final graphBloc = context.read<GraphBloc>();
-    graphBloc.add(LoadDataGraphEvent());
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final graphBloc = context.read<GraphBloc>();
-
     return BlocBuilder<GraphBloc, GraphState>(builder: (context, state) {
       if (state is LoadingGraphState) {
         return const CircularProgressIndicator();
@@ -68,6 +48,8 @@ class _GraphScreenTabsState extends State<GraphScreenTabs> {
                   Expanded(
                     child: GestureDetector(
                       onTap: () {
+                        final graphBloc = context.read<GraphBloc>();
+
                         graphBloc.add(SwitchGraphIncomeEvent());
                       },
                       child: Container(
@@ -96,6 +78,8 @@ class _GraphScreenTabsState extends State<GraphScreenTabs> {
                   Expanded(
                     child: GestureDetector(
                       onTap: () {
+                        final graphBloc = context.read<GraphBloc>();
+
                         graphBloc.add(SwitchGraphExpensesEvent());
                       },
                       child: Container(
