@@ -11,6 +11,8 @@ class GraphBloc extends Bloc<GraphEvent, GraphState> {
     on<LoadDataGraphEvent>(_loadDataGraphEvent);
     on<SwitchGraphExpensesEvent>(_switchGraphExpensesEvent);
     on<SwitchGraphIncomeEvent>(_switchGraphIncomeEvent);
+
+    on<SelectDateEvent>(_selectDateEvent);
   }
 
   int covertFormatedDateIntoUnixDate(DateTime date) {
@@ -26,18 +28,8 @@ class GraphBloc extends Bloc<GraphEvent, GraphState> {
     return series;
   }
 
-  getGraphInitalDataBasedOnTransactionType(String transactionType) async {
-    final currentDate = DateTime.now();
-    final startDate =
-        DateTime.parse(DateFormat('yyyy-MM-dd').format(currentDate));
-    final endDate = DateTime.parse(
-      DateFormat('yyyy-MM-dd').format(
-        currentDate.add(
-          const Duration(days: 30),
-        ),
-      ),
-    );
-
+  getTransactionsAndSeriesData(
+      DateTime startDate, DateTime endDate, String transactionType) async {
     List<TransactionModel> transactions = [];
     transactions = await DbServices.getTransactionBetweenTwoDates(
         covertFormatedDateIntoUnixDate(startDate),
@@ -47,16 +39,36 @@ class GraphBloc extends Bloc<GraphEvent, GraphState> {
     print(transactions);
     List series = await convertTransactionDataToTimeData(transactions);
 
+    return {"transactions": transactions, "series": series};
+  }
+
+  getGraphInitalDataBasedOnTransactionType(String transactionType) async {
+    final currentDate = DateTime.now();
+    final startDate = DateTime.parse(DateFormat('yyyy-MM-dd')
+        .format(currentDate.subtract(const Duration(days: 15))));
+    final endDate = DateTime.parse(
+      DateFormat('yyyy-MM-dd').format(
+        currentDate.add(
+          const Duration(days: 15),
+        ),
+      ),
+    );
+
+    final transactionAndSeriesData =
+        await getTransactionsAndSeriesData(startDate, endDate, transactionType);
+
     return {
       "startDate": startDate,
       "endDate": endDate,
-      "series": series,
-      "transactions": transactions,
+      "series": transactionAndSeriesData["series"],
+      "transactions": transactionAndSeriesData["transactions"],
       "transactionType": transactionType
     };
   }
 
   void _loadDataGraphEvent(event, emit) async {
+    emit(LoadingGraphState());
+
     final data = await getGraphInitalDataBasedOnTransactionType("Inc");
 
     emit(LoadedGraphState(
@@ -68,6 +80,8 @@ class GraphBloc extends Bloc<GraphEvent, GraphState> {
   }
 
   void _switchGraphExpensesEvent(event, emit) async {
+    emit(LoadingGraphState());
+
     final data = await getGraphInitalDataBasedOnTransactionType("Exp");
 
     emit(LoadedGraphState(
@@ -79,6 +93,8 @@ class GraphBloc extends Bloc<GraphEvent, GraphState> {
   }
 
   void _switchGraphIncomeEvent(event, emit) async {
+    emit(LoadingGraphState());
+
     final data = await getGraphInitalDataBasedOnTransactionType("Inc");
 
     emit(LoadedGraphState(
@@ -87,5 +103,18 @@ class GraphBloc extends Bloc<GraphEvent, GraphState> {
         endDate: data["endDate"],
         series: data["series"],
         transcations: data["transactions"]));
+  }
+
+  void _selectDateEvent(event, emit) async {
+    emit(LoadingGraphState());
+    final transactionAndSeriesData = await getTransactionsAndSeriesData(
+        event.startDate, event.endDate, event.transactionType);
+
+    emit(LoadedGraphState(
+        transactionType: event.transactionType,
+        startDate: event.startDate,
+        endDate: event.endDate,
+        series: transactionAndSeriesData["series"],
+        transcations: transactionAndSeriesData["transactions"]));
   }
 }

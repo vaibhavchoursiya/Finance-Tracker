@@ -3,6 +3,7 @@ import 'package:finence_tracker/features/graph/graph_event.dart';
 import 'package:finence_tracker/features/graph/graph_state.dart';
 import 'package:finence_tracker/widget/graph_screen_navbar.dart';
 import 'package:finence_tracker/widget/graph_screen_tabs.dart';
+import 'package:finence_tracker/widget/select_date_widget.dart';
 import 'package:finence_tracker/widget/transaction_chart_widget.dart';
 import 'package:finence_tracker/widget/transcation_view.dart';
 import 'package:flutter/material.dart';
@@ -47,6 +48,7 @@ class _GraphScreenState extends State<GraphScreen> {
             SizedBox(
               height: 14.0,
             ),
+            SelectDateWidget(),
             SizedBox(
               height: 28.0,
             ),
