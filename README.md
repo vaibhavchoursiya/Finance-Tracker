@@ -21,3 +21,4 @@
 ![Login](assets/snapshots/finance_tracker_login.png)
 ![Home](assets/snapshots/finance_tracker_home.png)
 ![Add Transaction](assets/snapshots/finance_tracker_add_transaction.png)
+![Graph Transaction Screen](assets/snapshots/finance_tracker_graph_screen.png)
