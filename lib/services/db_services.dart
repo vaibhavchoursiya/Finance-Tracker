@@ -14,7 +14,7 @@ class DbServices {
       version: 1,
       onCreate: (db, version) async {
         await db.execute('''
-        CREATE TABLE IF NOT EXISTS $tableName (id INTEGER PRIMARY KEY, note TEXT, category TEXT, date TEXT, amount REAL, transactionType TEXT)
+        CREATE TABLE IF NOT EXISTS $tableName (id INTEGER PRIMARY KEY, note TEXT, category TEXT, date INTEGER, amount REAL, transactionType TEXT)
   ''');
       },
     );
@@ -36,11 +36,10 @@ class DbServices {
 
     for (var i = data.length - 1; i >= 0; i--) {
       final item = data[i];
-
       transactions.add(TransactionModel(
           id: item["id"],
           category: item["category"],
-          date: DateTime.parse(item["date"]),
+          date: DateTime.fromMillisecondsSinceEpoch((item["date"] * 1000)),
           amount: item["amount"],
           transactionType: item["transactionType"],
           note: item["note"]));
@@ -81,5 +80,11 @@ class DbServices {
 
   static Future<void> deleteTranscation(int id) async {
     await database.delete(tableName, where: 'id = ?', whereArgs: [id]);
+  }
+
+  static Future getTransactionBetweenTwoDates(int date_1, int date_2) async {
+    List data = await database.rawQuery(
+        '''SELECT * FROM $tableName WHERE date BETWEEN $date_1 AND $date_2''');
+    print(data);
   }
 }

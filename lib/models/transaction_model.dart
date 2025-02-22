@@ -16,10 +16,11 @@ class TransactionModel {
   });
 
   toMap() {
+    print(date.millisecondsSinceEpoch ~/ 1000);
     return {
       "note": note,
       "category": category,
-      "date": date.toString(),
+      "date": (date.millisecondsSinceEpoch ~/ 1000),
       "amount": amount,
       "transactionType": transactionType
     };

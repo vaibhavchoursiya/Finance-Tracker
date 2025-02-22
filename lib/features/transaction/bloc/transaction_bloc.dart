@@ -43,7 +43,8 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
 
     final TransactionModel transaction = TransactionModel(
         category: event.category,
-        date: DateTime.parse(event.date),
+        date: DateTime.parse(event
+            .date), // Formated DateTime String -> DateTime object -> DateTime.miliseconds -> Stored in database.
         amount: event.amount,
         transactionType: event.transactionType,
         note: event.note);

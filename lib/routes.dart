@@ -11,9 +11,12 @@ class AppRouter {
     GoRoute(
       path: "/home",
       name: "/home",
-      builder: (context, state) => const MainScreen(
-        userName: "unKnown",
-      ),
+      builder: (context, state) {
+        Map map = state.extra as Map;
+        return MainScreen(
+          userName: map["userName"],
+        );
+      },
     ),
     GoRoute(
       path: "/register",

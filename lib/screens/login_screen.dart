@@ -1,5 +1,6 @@
 import 'package:finence_tracker/features/login/bloc/login_bloc.dart';
 import 'package:finence_tracker/features/login/bloc/login_state.dart';
+import 'package:finence_tracker/services/firebase_services.dart';
 import 'package:finence_tracker/utitlies/app_theme.dart';
 import 'package:finence_tracker/widget/login_form_widget.dart';
 import 'package:finence_tracker/widget/scaffold_message_widget.dart';
@@ -74,8 +75,10 @@ class LoginScreen extends StatelessWidget {
                 if (state is LoginSuccessState) {
                   scaffoldSnackBar(
                       context, Colors.greenAccent, "login successful");
+                  final userName =
+                      FirebaseServices.firebaseAuth.currentUser!.displayName;
                   // go to home screen
-                  context.go("/home");
+                  context.go("/home", extra: {"userName": userName});
                 }
               }),
             ],
