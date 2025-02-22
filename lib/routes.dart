@@ -1,7 +1,9 @@
+import 'package:finence_tracker/models/transaction_model.dart';
 import 'package:finence_tracker/screens/add_transaction_screen.dart';
 import 'package:finence_tracker/screens/login_screen.dart';
 import 'package:finence_tracker/screens/main_screen.dart';
 import 'package:finence_tracker/screens/registeration_screen.dart';
+import 'package:finence_tracker/screens/show_transaction_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -47,6 +49,16 @@ class AppRouter {
       path: "/add_transcation",
       name: "/add_transcation",
       builder: (context, state) => const AddTranscationScreen(),
+    ),
+    GoRoute(
+      path: "/show_transaction",
+      name: "/show_transaction",
+      builder: (context, state) {
+        final Map data = state.extra as Map;
+        return ShowTransactionScreen(
+          transaction: data["data"],
+        );
+      },
     ),
   ]);
 }

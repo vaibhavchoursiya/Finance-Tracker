@@ -2,9 +2,12 @@ import 'dart:math';
 
 import 'package:finence_tracker/features/transaction/bloc/transaction_bloc.dart';
 import 'package:finence_tracker/features/transaction/bloc/transaction_event.dart';
+import 'package:finence_tracker/models/transaction_model.dart';
 import 'package:finence_tracker/utitlies/app_theme.dart';
+import 'package:finence_tracker/widget/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TransactionTile extends StatelessWidget {
@@ -30,6 +33,17 @@ class TransactionTile extends StatelessWidget {
     final transactionBloc = context.read<TransactionBloc>();
 
     return GestureDetector(
+      onTap: () {
+        context.push("/show_transaction", extra: {
+          "data": TransactionModel(
+              amount: amount,
+              category: category,
+              date: DateTime.parse(date),
+              note: note,
+              transactionType: transactionType,
+              id: id)
+        });
+      },
       onDoubleTap: () {
         transactionBloc.add(DeleteTransactionEvent(id: id));
       },
