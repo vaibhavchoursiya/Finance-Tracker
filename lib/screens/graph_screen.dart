@@ -1,9 +1,10 @@
 import 'package:finence_tracker/features/graph/graph_bloc.dart';
 import 'package:finence_tracker/features/graph/graph_event.dart';
+import 'package:finence_tracker/features/graph/graph_state.dart';
 import 'package:finence_tracker/widget/graph_screen_navbar.dart';
 import 'package:finence_tracker/widget/graph_screen_tabs.dart';
 import 'package:finence_tracker/widget/transaction_chart_widget.dart';
-import 'package:finence_tracker/widget/transaction_tile.dart';
+import 'package:finence_tracker/widget/transcation_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -30,27 +31,47 @@ class _GraphScreenState extends State<GraphScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(28.0),
-      child: Column(
-        children: [
-          SizedBox(
-            height: 14.0,
-          ),
-          GraphScreenNavBar(),
-          SizedBox(
-            height: 28.0,
-          ),
-          GraphScreenTabs(),
-          SizedBox(
-            height: 14.0,
-          ),
-          SizedBox(
-            height: 28.0,
-          ),
-          TransactionChartWidget(),
-        ],
+    return const SingleChildScrollView(
+      child: Padding(
+        padding: EdgeInsets.all(28.0),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 14.0,
+            ),
+            GraphScreenNavBar(),
+            SizedBox(
+              height: 28.0,
+            ),
+            GraphScreenTabs(),
+            SizedBox(
+              height: 14.0,
+            ),
+            SizedBox(
+              height: 28.0,
+            ),
+            TransactionChartWidget(),
+            GraphTransactionView(),
+          ],
+        ),
       ),
     );
+  }
+}
+
+class GraphTransactionView extends StatelessWidget {
+  const GraphTransactionView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<GraphBloc, GraphState>(builder: (context, state) {
+      if (state is LoadingGraphState) {
+        return const CircularProgressIndicator();
+      }
+      if (state is LoadedGraphState) {
+        return TranscationView(transcations: state.transcations);
+      }
+      return const CircularProgressIndicator();
+    });
   }
 }
