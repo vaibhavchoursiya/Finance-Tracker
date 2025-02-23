@@ -27,7 +27,9 @@ class NavBar extends StatelessWidget {
           children: [
             IconButton(
               onPressed: () {
-                Scaffold.of(context).openDrawer();
+                if (context.mounted) {
+                  Scaffold.of(context).openDrawer();
+                }
               },
               icon: const Icon(
                 Icons.menu,
