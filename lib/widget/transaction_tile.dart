@@ -4,11 +4,11 @@ import 'package:finence_tracker/features/transaction/bloc/transaction_bloc.dart'
 import 'package:finence_tracker/features/transaction/bloc/transaction_event.dart';
 import 'package:finence_tracker/models/transaction_model.dart';
 import 'package:finence_tracker/utitlies/app_theme.dart';
-import 'package:finence_tracker/widget/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class TransactionTile extends StatelessWidget {
   final String transactionType;
@@ -17,6 +17,7 @@ class TransactionTile extends StatelessWidget {
   final String category;
   final double amount;
   final String date;
+  final bool doYouWantToShowDateFormat;
 
   const TransactionTile({
     super.key,
@@ -26,7 +27,22 @@ class TransactionTile extends StatelessWidget {
     required this.date,
     required this.id,
     required this.note,
+    required this.doYouWantToShowDateFormat,
   });
+
+  String getTodayTomorrowYesterday({String? stringDate}) {
+    final todayFormatedDate = DateFormat("yyyy-MM-dd").format(DateTime.now());
+    final DateTime today = DateTime.parse(todayFormatedDate);
+
+    final date = DateTime.parse(stringDate!);
+
+    if (date.isAfter(today) == true) {
+      return "Tomorrow";
+    } else if (date.isBefore(today)) {
+      return "Yesterday";
+    }
+    return "Today";
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -124,7 +140,9 @@ class TransactionTile extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    date,
+                    doYouWantToShowDateFormat
+                        ? date
+                        : getTodayTomorrowYesterday(stringDate: date),
                     style: GoogleFonts.aDLaMDisplay(
                       color: AppTheme.light.withOpacity(0.6),
                       fontSize: 14.0,

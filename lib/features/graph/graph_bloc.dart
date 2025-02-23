@@ -15,6 +15,7 @@ class GraphBloc extends Bloc<GraphEvent, GraphState> {
     on<SelectDateEvent>(_selectDateEvent);
   }
 
+  /// /////////////////// Helper Methods ///////////////////////////////////////////////////
   int covertFormatedDateIntoUnixDate(DateTime date) {
     return date.millisecondsSinceEpoch ~/ 1000;
   }
@@ -66,6 +67,7 @@ class GraphBloc extends Bloc<GraphEvent, GraphState> {
     };
   }
 
+/////////////////////////////////////////////////////////////////////
   void _loadDataGraphEvent(event, emit) async {
     emit(LoadingGraphState());
 

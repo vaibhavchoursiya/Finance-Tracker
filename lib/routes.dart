@@ -1,4 +1,3 @@
-import 'package:finence_tracker/models/transaction_model.dart';
 import 'package:finence_tracker/screens/add_transaction_screen.dart';
 import 'package:finence_tracker/screens/login_screen.dart';
 import 'package:finence_tracker/screens/main_screen.dart';

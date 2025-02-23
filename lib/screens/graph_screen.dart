@@ -5,7 +5,7 @@ import 'package:finence_tracker/widget/graph_screen_navbar.dart';
 import 'package:finence_tracker/widget/graph_screen_tabs.dart';
 import 'package:finence_tracker/widget/select_date_widget.dart';
 import 'package:finence_tracker/widget/transaction_chart_widget.dart';
-import 'package:finence_tracker/widget/transcation_view.dart';
+import 'package:finence_tracker/widget/transaction_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -71,7 +71,7 @@ class GraphTransactionView extends StatelessWidget {
         return const CircularProgressIndicator();
       }
       if (state is LoadedGraphState) {
-        return TranscationView(transcations: state.transcations);
+        return TransactionView(transactions: state.transcations);
       }
       return const CircularProgressIndicator();
     });

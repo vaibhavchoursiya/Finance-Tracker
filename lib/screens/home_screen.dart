@@ -4,7 +4,7 @@ import 'package:finence_tracker/features/transaction/bloc/transaction_state.dart
 import 'package:finence_tracker/utitlies/app_theme.dart';
 import 'package:finence_tracker/widget/balance_card.dart';
 import 'package:finence_tracker/widget/nav_bar.dart';
-import 'package:finence_tracker/widget/transcation_view.dart';
+import 'package:finence_tracker/widget/transaction_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -84,13 +84,14 @@ class _HomeScreenState extends State<HomeScreen> {
               BlocBuilder<TransactionBloc, TransactionState>(
                   builder: (context, state) {
                 if (state is LoadedTransaction) {
-                  return TranscationView(
-                    transcations: state.transactions,
+                  return TransactionView(
+                    doYouWantToShowDateFormat: false,
+                    transactions: state.transactions,
                   );
                 } else if (state is LoadingTransaction) {
                   return const CircularProgressIndicator();
                 }
-                return const TranscationView(transcations: []);
+                return const TransactionView(transactions: []);
               })
             ],
           ),

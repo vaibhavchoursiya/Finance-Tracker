@@ -30,8 +30,14 @@ class DbServices {
     return {"status": "failed", "errorMessage": "failed to add."};
   }
 
-  static Future<List> getTranscations() async {
-    final List data = await database.rawQuery('SELECT * FROM $tableName');
+  static Future<List> getTranscations({bool showAllTransaction = true}) async {
+    String query = 'SELECT * FROM $tableName';
+
+    if (!showAllTransaction) {
+      query = "SELECT * FROM $tableName LIMIT 10";
+    }
+
+    final List data = await database.rawQuery(query);
     List<TransactionModel> transactions = [];
 
     for (var i = data.length - 1; i >= 0; i--) {
