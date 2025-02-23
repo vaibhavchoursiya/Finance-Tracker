@@ -17,8 +17,8 @@
 
 ## Snapshots
 
-![Register](assets/snapshots/Samsung%20Galaxy%20S20%20Screenshot%201.png)
-![Login](assets/snapshots/Samsung%20Galaxy%20S20%20Screenshot%202.png)
-![Home](assets/snapshots/Samsung%20Galaxy%20S20%20Screenshot%203.png)
-![Add Transaction](assets/snapshots/Samsung%20Galaxy%20S20%20Screenshot%205.png)
-![Graph Transaction Screen](assets/snapshots/Samsung%20Galaxy%20S20%20Screenshot%204.png)
+<img src="assets/snapshots/login.png" width=300 height=600>
+<img src="assets/snapshots/register.png" width=300 height=600>
+<img src="assets/snapshots/home.png" width=300 height=600>
+<img src="assets/snapshots/graph.png" width=300 height=600>
+<img src="assets/snapshots/graph_1.png" width=300 height=600>
