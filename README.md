@@ -17,8 +17,8 @@
 
 ## Snapshots
 
-![Register](assets/snapshots/finance_tracker.png)
-![Login](assets/snapshots/finance_tracker_login.png)
-![Home](assets/snapshots/finance_tracker_home.png)
-![Add Transaction](assets/snapshots/finance_tracker_add_transaction.png)
-![Graph Transaction Screen](assets/snapshots/finance_tracker_graph_screen.png)
+![Register](assets/snapshots/Samsung%20Galaxy%20S20%20Screenshot%201.png)
+![Login](assets/snapshots/Samsung%20Galaxy%20S20%20Screenshot%202.png)
+![Home](assets/snapshots/Samsung%20Galaxy%20S20%20Screenshot%203.png)
+![Add Transaction](assets/snapshots/Samsung%20Galaxy%20S20%20Screenshot%205.png)
+![Graph Transaction Screen](assets/snapshots/Samsung%20Galaxy%20S20%20Screenshot%204.png)
