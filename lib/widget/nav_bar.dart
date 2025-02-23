@@ -26,7 +26,9 @@ class NavBar extends StatelessWidget {
         Row(
           children: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
               icon: const Icon(
                 Icons.menu,
                 color: AppTheme.light,
