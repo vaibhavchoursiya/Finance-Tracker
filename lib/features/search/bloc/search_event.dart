@@ -1,7 +1,7 @@
 abstract class SearchEvent {}
 
 class SearchTransactionEvent extends SearchEvent {
-  final String query;
+  final String? query;
 
-  SearchTransactionEvent({required this.query});
+  SearchTransactionEvent({this.query});
 }

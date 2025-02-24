@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AddTransactionNavbar extends StatelessWidget {
-  const AddTransactionNavbar({
+class ScreenNavBar extends StatelessWidget {
+  final String title;
+  const ScreenNavBar({
     super.key,
+    required this.title,
   });
 
   @override
@@ -26,7 +28,7 @@ class AddTransactionNavbar extends StatelessWidget {
           width: 6.0,
         ),
         Text(
-          "Add Transaction",
+          title,
           style:
               GoogleFonts.aDLaMDisplay(color: AppTheme.light, fontSize: 22.0),
         ),

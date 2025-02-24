@@ -26,7 +26,7 @@ class AddTranscationScreen extends StatelessWidget {
               const SizedBox(
                 height: 16.0,
               ),
-              const AddTransactionNavbar(),
+              const ScreenNavBar(title: "Add Transaction"),
               BlocConsumer<TransactionBloc, TransactionState>(
                   listener: (context, state) {
                 if (state is AddedTransacation) {

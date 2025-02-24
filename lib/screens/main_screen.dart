@@ -5,8 +5,10 @@ import 'package:finence_tracker/screens/graph_screen.dart';
 import 'package:finence_tracker/utitlies/app_theme.dart';
 import 'package:finence_tracker/widget/app_bottom_navigation_bar.dart';
 import 'package:finence_tracker/widget/app_floating_action_button.dart';
+import 'package:finence_tracker/widget/transaction_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MainScreen extends StatelessWidget {
@@ -28,6 +30,10 @@ class MainScreen extends StatelessWidget {
               ),
             ),
             ListTile(
+              onTap: () {
+                context.pop();
+                context.push("/search");
+              },
               tileColor: AppTheme.light.withOpacity(0.05),
               contentPadding: const EdgeInsets.all(8.0),
               leading: const Icon(

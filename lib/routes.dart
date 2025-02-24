@@ -2,6 +2,7 @@ import 'package:finence_tracker/screens/add_transaction_screen.dart';
 import 'package:finence_tracker/screens/login_screen.dart';
 import 'package:finence_tracker/screens/main_screen.dart';
 import 'package:finence_tracker/screens/registeration_screen.dart';
+import 'package:finence_tracker/screens/search_screen.dart';
 import 'package:finence_tracker/screens/show_transaction_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -58,6 +59,11 @@ class AppRouter {
           transaction: data["data"],
         );
       },
+    ),
+    GoRoute(
+      path: "/search",
+      name: "/search",
+      builder: (context, state) => const SearchScreen(),
     ),
   ]);
 }

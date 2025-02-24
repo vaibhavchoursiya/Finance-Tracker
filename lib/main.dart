@@ -3,6 +3,7 @@ import 'package:finence_tracker/features/change_screen/bloc/change_screen_bloc.d
 import 'package:finence_tracker/features/graph/graph_bloc.dart';
 import 'package:finence_tracker/features/login/bloc/login_bloc.dart';
 import 'package:finence_tracker/features/password_visibilty_toggle/bloc/password_visibilty_toggle_bloc.dart';
+import 'package:finence_tracker/features/search/bloc/search_bloc.dart';
 import 'package:finence_tracker/features/transaction/bloc/transaction_bloc.dart';
 
 import 'package:finence_tracker/firebase_options.dart';
@@ -46,6 +47,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => GraphBloc(),
+        ),
+        BlocProvider(
+          create: (context) => SearchBloc(),
         ),
       ],
       child: MaterialApp.router(
