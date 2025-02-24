@@ -30,14 +30,7 @@ class DbServices {
     return {"status": "failed", "errorMessage": "failed to add."};
   }
 
-  static Future<List> getTranscations({bool showAllTransaction = true}) async {
-    String query = 'SELECT * FROM $tableName';
-
-    if (!showAllTransaction) {
-      query = "SELECT * FROM $tableName LIMIT 10";
-    }
-
-    final List data = await database.rawQuery(query);
+  static covertDataIntoTransactionModels(List data) {
     List<TransactionModel> transactions = [];
 
     for (var i = data.length - 1; i >= 0; i--) {
@@ -52,6 +45,17 @@ class DbServices {
     }
 
     return transactions;
+  }
+
+  static Future<List> getTranscations({bool showAllTransaction = true}) async {
+    String query = 'SELECT * FROM $tableName';
+
+    if (!showAllTransaction) {
+      query = "SELECT * FROM $tableName LIMIT 10";
+    }
+
+    final List data = await database.rawQuery(query);
+    return covertDataIntoTransactionModels(data);
   }
 
   static Future getBalance() async {
@@ -94,19 +98,15 @@ class DbServices {
         '''SELECT * FROM $tableName WHERE transactionType = '$transactionType' AND date BETWEEN $date_1 AND $date_2''');
 
     print("data between two datas : $data");
-    List<TransactionModel> transactions = [];
+    return covertDataIntoTransactionModels(data);
+  }
 
-    for (var i = data.length - 1; i >= 0; i--) {
-      final item = data[i];
-      transactions.add(TransactionModel(
-          id: item["id"],
-          category: item["category"],
-          date: DateTime.fromMillisecondsSinceEpoch((item["date"] * 1000)),
-          amount: item["amount"],
-          transactionType: item["transactionType"],
-          note: item["note"]));
+  static Future getTransactionsBasedOnQuery({String? searchQuery}) async {
+    String query = "SELECT * FROM $tableName";
+    if (searchQuery != null) {
+      query = "SELECT * FROM $tableName WHERE note LIKE '%$searchQuery%'";
     }
-
-    return transactions;
+    final data = await database.rawQuery(query);
+    return covertDataIntoTransactionModels(data);
   }
 }
