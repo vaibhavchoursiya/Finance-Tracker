@@ -3,9 +3,7 @@
 <!-- [Alternative Text](reference link) -->
 
 ![App](https://img.shields.io/badge/app-finance_tracker-black)
-
-![Status](https://img.shields.io/badge/app-finance_tracker-red)
-
+![Status](https://img.shields.io/badge/status-development-red)
 ![Support](https://img.shields.io/badge/support-android-green)
 
 ## Instruction
