@@ -3,6 +3,7 @@ import 'package:finence_tracker/features/graph/graph_event.dart';
 import 'package:finence_tracker/features/graph/graph_state.dart';
 import 'package:finence_tracker/widget/graph_screen_navbar.dart';
 import 'package:finence_tracker/widget/graph_screen_tabs.dart';
+import 'package:finence_tracker/widget/loading_widget.dart';
 import 'package:finence_tracker/widget/select_date_widget.dart';
 import 'package:finence_tracker/widget/transaction_chart_widget.dart';
 import 'package:finence_tracker/widget/transaction_view.dart';
@@ -68,12 +69,18 @@ class GraphTransactionView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<GraphBloc, GraphState>(builder: (context, state) {
       if (state is LoadingGraphState) {
-        return const CircularProgressIndicator();
+        return const LoadingWidget(
+          height: 250.0,
+          width: double.infinity,
+        );
       }
       if (state is LoadedGraphState) {
         return TransactionView(transactions: state.transcations);
       }
-      return const CircularProgressIndicator();
+      return const LoadingWidget(
+        height: 250.0,
+        width: double.infinity,
+      );
     });
   }
 }

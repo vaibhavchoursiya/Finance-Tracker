@@ -3,6 +3,7 @@ import 'package:finence_tracker/features/transaction/bloc/transaction_event.dart
 import 'package:finence_tracker/features/transaction/bloc/transaction_state.dart';
 import 'package:finence_tracker/utitlies/app_theme.dart';
 import 'package:finence_tracker/widget/balance_card.dart';
+import 'package:finence_tracker/widget/loading_widget.dart';
 import 'package:finence_tracker/widget/nav_bar.dart';
 import 'package:finence_tracker/widget/transaction_view.dart';
 import 'package:flutter/material.dart';
@@ -57,7 +58,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           totalExpenses: state.totalExpenses,
                           totalIncome: state.totalIncome);
                     } else if (state is LoadingTransaction) {
-                      return const CircularProgressIndicator();
+                      return const LoadingWidget(
+                        height: 200.0,
+                        width: double.infinity,
+                      );
                     }
 
                     return const BalanceCard(
@@ -89,7 +93,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     transactions: state.transactions,
                   );
                 } else if (state is LoadingTransaction) {
-                  return const CircularProgressIndicator();
+                  return const LoadingWidget(
+                    height: 300.0,
+                    width: double.infinity,
+                  );
                 }
                 return const TransactionView(transactions: []);
               })

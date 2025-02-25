@@ -1,6 +1,7 @@
 import 'package:finence_tracker/features/graph/graph_bloc.dart';
 import 'package:finence_tracker/features/graph/graph_state.dart';
 import 'package:finence_tracker/utitlies/app_theme.dart';
+import 'package:finence_tracker/widget/loading_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'package:d_chart/d_chart.dart';
@@ -14,7 +15,10 @@ class TransactionChartWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<GraphBloc, GraphState>(builder: (context, state) {
       if (state is LoadingGraphState) {
-        return const CircularProgressIndicator();
+        return const LoadingWidget(
+          height: 300.0,
+          width: double.infinity,
+        );
       }
       if (state is LoadedGraphState) {
         return AspectRatio(
@@ -65,7 +69,10 @@ class TransactionChartWidget extends StatelessWidget {
           ),
         );
       }
-      return const CircularProgressIndicator();
+      return const LoadingWidget(
+        height: 300.0,
+        width: double.infinity,
+      );
     });
   }
 }

@@ -94,7 +94,7 @@ class _AddTransactionFormState extends State<AddTransactionForm> {
                 backgroundColor: AppTheme.primary,
               ),
               child: Text(
-                "Transcation",
+                "Transaction",
                 style: GoogleFonts.aDLaMDisplay(color: AppTheme.light),
               ),
             ),

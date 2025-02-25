@@ -2,6 +2,7 @@ import 'package:finence_tracker/features/login/bloc/login_bloc.dart';
 import 'package:finence_tracker/features/login/bloc/login_state.dart';
 import 'package:finence_tracker/services/firebase_services.dart';
 import 'package:finence_tracker/utitlies/app_theme.dart';
+import 'package:finence_tracker/widget/loading_widget.dart';
 import 'package:finence_tracker/widget/login_form_widget.dart';
 import 'package:finence_tracker/widget/scaffold_message_widget.dart';
 import 'package:flutter/material.dart';
@@ -60,11 +61,17 @@ class LoginScreen extends StatelessWidget {
               // Agar koi side effect show karna hai jo ui ko build nahi karaga yai effect nahi karaga to listener user karn hai(navigation, snackbar,)
               BlocConsumer<LoginBloc, LoginState>(builder: (context, state) {
                 if (state is LoginLoadingState) {
-                  return const CircularProgressIndicator();
+                  return const LoadingWidget(
+                    height: 300.0,
+                    width: double.infinity,
+                  );
                 }
 
                 if (state is LoginSuccessState) {
-                  return const CircularProgressIndicator();
+                  return const LoadingWidget(
+                    height: 300.0,
+                    width: double.infinity,
+                  );
                 }
                 return const LoginFormWidget();
               }, listener: (context, state) {

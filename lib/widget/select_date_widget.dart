@@ -2,6 +2,7 @@ import 'package:finence_tracker/features/graph/graph_bloc.dart';
 import 'package:finence_tracker/features/graph/graph_event.dart';
 import 'package:finence_tracker/features/graph/graph_state.dart';
 import 'package:finence_tracker/utitlies/app_theme.dart';
+import 'package:finence_tracker/widget/loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,7 +16,10 @@ class SelectDateWidget extends StatelessWidget {
     final graphBloc = context.read<GraphBloc>();
     return BlocBuilder<GraphBloc, GraphState>(builder: (context, state) {
       if (state is LoadingGraphState) {
-        return const CircularProgressIndicator();
+        return const LoadingWidget(
+          height: 60.0,
+          width: double.infinity,
+        );
       }
       if (state is LoadedGraphState) {
         return Row(
@@ -95,7 +99,10 @@ class SelectDateWidget extends StatelessWidget {
           ],
         );
       }
-      return const CircularProgressIndicator();
+      return const LoadingWidget(
+        height: 60.0,
+        width: double.infinity,
+      );
     });
   }
 }

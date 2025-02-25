@@ -2,6 +2,7 @@ import 'package:finence_tracker/features/graph/graph_bloc.dart';
 import 'package:finence_tracker/features/graph/graph_event.dart';
 import 'package:finence_tracker/features/graph/graph_state.dart';
 import 'package:finence_tracker/utitlies/app_theme.dart';
+import 'package:finence_tracker/widget/loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,7 +14,10 @@ class GraphScreenTabs extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<GraphBloc, GraphState>(builder: (context, state) {
       if (state is LoadingGraphState) {
-        return const CircularProgressIndicator();
+        return const LoadingWidget(
+          height: 60.0,
+          width: double.infinity,
+        );
       }
 
       if (state is LoadedGraphState) {
@@ -107,7 +111,10 @@ class GraphScreenTabs extends StatelessWidget {
           ),
         );
       }
-      return const CircularProgressIndicator();
+      return const LoadingWidget(
+        height: 60.0,
+        width: double.infinity,
+      );
     });
   }
 }

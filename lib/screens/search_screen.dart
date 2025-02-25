@@ -3,6 +3,7 @@ import 'package:finence_tracker/features/search/bloc/search_event.dart';
 import 'package:finence_tracker/features/search/bloc/search_state.dart';
 import 'package:finence_tracker/utitlies/app_theme.dart';
 import 'package:finence_tracker/widget/add_transaction_navbar.dart';
+import 'package:finence_tracker/widget/loading_widget.dart';
 import 'package:finence_tracker/widget/transaction_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -63,11 +64,17 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
               BlocBuilder<SearchBloc, SearchState>(builder: (context, state) {
                 if (state is LoadingSearchState) {
-                  return const CircularProgressIndicator();
+                  return const LoadingWidget(
+                    height: 300.0,
+                    width: double.infinity,
+                  );
                 } else if (state is LoadedSearchState) {
                   return TransactionView(transactions: state.transactions);
                 }
-                return const CircularProgressIndicator();
+                return const LoadingWidget(
+                  height: 300.0,
+                  width: double.infinity,
+                );
               }),
             ],
           ),
