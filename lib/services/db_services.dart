@@ -97,7 +97,7 @@ class DbServices {
     List data = await database.rawQuery(
         '''SELECT * FROM $tableName WHERE transactionType = '$transactionType' AND date BETWEEN $date_1 AND $date_2''');
 
-    print("data between two datas : $data");
+    // print("data between two datas : $data");
     return covertDataIntoTransactionModels(data);
   }
 

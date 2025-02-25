@@ -34,15 +34,6 @@ class ShowTransactionScreen extends StatelessWidget {
                 const SizedBox(
                   width: 10.0,
                 ),
-                Text(
-                  transaction.note,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: GoogleFonts.aDLaMDisplay(
-                    color: AppTheme.light,
-                    fontSize: 22.0,
-                  ),
-                )
               ],
             ),
             const SizedBox(

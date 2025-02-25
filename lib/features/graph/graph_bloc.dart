@@ -25,7 +25,7 @@ class GraphBloc extends Bloc<GraphEvent, GraphState> {
     for (var t in transactions) {
       series.add(TimeData(domain: t.date, measure: t.amount));
     }
-    print("series data: $series");
+    // print("series data: $series");
     return series;
   }
 
@@ -37,7 +37,7 @@ class GraphBloc extends Bloc<GraphEvent, GraphState> {
         covertFormatedDateIntoUnixDate(endDate),
         transactionType);
 
-    print(transactions);
+    // print(transactions);
     List series = await convertTransactionDataToTimeData(transactions);
 
     return {"transactions": transactions, "series": series};
