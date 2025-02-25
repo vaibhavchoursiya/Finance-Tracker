@@ -1,3 +1,5 @@
+import 'package:finence_tracker/features/graph/graph_bloc.dart';
+import 'package:finence_tracker/features/graph/graph_event.dart';
 import 'package:finence_tracker/features/transaction/bloc/transaction_bloc.dart';
 import 'package:finence_tracker/features/transaction/bloc/transaction_event.dart';
 import 'package:finence_tracker/features/transaction/bloc/transaction_state.dart';
@@ -16,6 +18,7 @@ class AddTranscationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final transactionBloc = context.read<TransactionBloc>();
+    final graphBloc = context.read<GraphBloc>();
 
     return Scaffold(
       backgroundColor: AppTheme.dark,
@@ -33,6 +36,7 @@ class AddTranscationScreen extends StatelessWidget {
                 if (state is AddedTransacation) {
                   scaffoldSnackBar(context, Colors.green, state.message);
                   transactionBloc.add(LoadTransactionEvent());
+                  graphBloc.add(LoadDataGraphEvent());
                   context.pop();
                 } else if (state is FailedAddedTransaction) {
                   scaffoldSnackBar(context, Colors.green, state.errorMessage);

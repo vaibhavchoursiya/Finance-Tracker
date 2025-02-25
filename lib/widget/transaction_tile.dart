@@ -1,5 +1,9 @@
 import 'dart:math';
 
+import 'package:finence_tracker/features/graph/graph_bloc.dart';
+import 'package:finence_tracker/features/graph/graph_event.dart';
+import 'package:finence_tracker/features/search/bloc/search_bloc.dart';
+import 'package:finence_tracker/features/search/bloc/search_event.dart';
 import 'package:finence_tracker/features/transaction/bloc/transaction_bloc.dart';
 import 'package:finence_tracker/features/transaction/bloc/transaction_event.dart';
 import 'package:finence_tracker/models/transaction_model.dart';
@@ -47,7 +51,8 @@ class TransactionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final transactionBloc = context.read<TransactionBloc>();
-
+    final graphBloc = context.read<GraphBloc>();
+    final searchBloc = context.read<SearchBloc>();
     return GestureDetector(
       onTap: () {
         context.push("/show_transaction", extra: {
@@ -62,6 +67,8 @@ class TransactionTile extends StatelessWidget {
       },
       onDoubleTap: () {
         transactionBloc.add(DeleteTransactionEvent(id: id));
+        graphBloc.add(LoadDataGraphEvent());
+        searchBloc.add(SearchTransactionEvent());
       },
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 10.0),
