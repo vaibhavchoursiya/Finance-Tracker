@@ -45,6 +45,10 @@ class ShowTransactionScreen extends StatelessWidget {
                 border: TableBorder.all(color: AppTheme.light),
                 children: [
                   tableRow(
+                    "Note",
+                    transaction.note.toString(),
+                  ),
+                  tableRow(
                     "Amount",
                     transaction.amount.toString(),
                   ),
@@ -55,10 +59,6 @@ class ShowTransactionScreen extends StatelessWidget {
                   tableRow(
                     "Date",
                     transaction.date.toString(),
-                  ),
-                  tableRow(
-                    "Note",
-                    transaction.note.toString(),
                   ),
                 ],
               ),
