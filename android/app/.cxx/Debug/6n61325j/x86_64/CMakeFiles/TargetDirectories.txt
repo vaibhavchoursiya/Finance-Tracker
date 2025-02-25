@@ -1,2 +1,0 @@
-/home/vaibhav/flutter_projects/finence_tracker/android/app/.cxx/Debug/6n61325j/x86_64/CMakeFiles/edit_cache.dir
-/home/vaibhav/flutter_projects/finence_tracker/android/app/.cxx/Debug/6n61325j/x86_64/CMakeFiles/rebuild_cache.dir
